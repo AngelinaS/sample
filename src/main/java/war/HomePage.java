@@ -7,6 +7,7 @@ import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.form.Button;
 import org.apache.wicket.markup.html.form.Form;
+import org.apache.wicket.markup.html.form.PasswordTextField;
 import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.model.IWrapModel;
@@ -28,7 +29,7 @@ public class HomePage extends WebPage {
     public HomePage() {
         Form form = new Form("form");
         name = new TextField("name", new Model(""));
-        sname = new TextField("sname", new Model(""));
+        sname = new PasswordTextField("sname", new Model(""));
         form.add(name);
         form.add(sname);
         form.add(new Button("button"){
@@ -45,6 +46,7 @@ public class HomePage extends WebPage {
         add(form);
         add(label = new Label ("message", new Model("")));
         add(label2 = new Label ("message2", new Model("")));
+
 
     }
 
