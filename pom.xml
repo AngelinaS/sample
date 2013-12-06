@@ -89,7 +89,7 @@
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-core</artifactId>
-            <version>4.1.12.Final</version>
+            <version>${hibernate.version}</version>
         </dependency>
 
         <dependency>
@@ -107,7 +107,7 @@
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-entitymanager</artifactId>
-            <version>4.1.12.Final</version>
+            <version>${hibernate.version}</version>
         </dependency>
 	</dependencies>
 
@@ -151,6 +151,7 @@
 	<properties>
 		<wicket.version>1.5.5</wicket.version>
 		<jetty.version>6.1.4</jetty.version>
-	</properties>
+        <hibernate.version>4.1.12.Final</hibernate.version>
+    </properties>
 
 </project>
