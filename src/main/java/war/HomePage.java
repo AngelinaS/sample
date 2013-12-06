@@ -1,20 +1,14 @@
 package war;
 
-import org.apache.wicket.PageParameters;
-import org.apache.wicket.ajax.AjaxRequestTarget;
-import org.apache.wicket.ajax.markup.html.form.AjaxSubmitLink;
-import org.apache.wicket.markup.html.basic.Label;
+import org.apache.wicket.datetime.StyleDateConverter;
+import org.apache.wicket.datetime.markup.html.form.DateTextField;
+import org.apache.wicket.extensions.yui.calendar.DatePicker;
 import org.apache.wicket.markup.html.WebPage;
-import org.apache.wicket.markup.html.form.Button;
-import org.apache.wicket.markup.html.form.Form;
-import org.apache.wicket.markup.html.form.PasswordTextField;
-import org.apache.wicket.markup.html.form.TextField;
-import org.apache.wicket.markup.html.link.Link;
-import org.apache.wicket.model.IWrapModel;
+import org.apache.wicket.markup.html.form.*;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.model.PropertyModel;
+import org.apache.wicket.util.time.TimeFrame;
 
-import java.security.PrivateKey;
 import java.util.Date;
 
 /**
@@ -22,47 +16,68 @@ import java.util.Date;
  */
 public class HomePage extends WebPage {
 
-    private Label label;
-    private Label label2;
+    private TextField searchLabel;
+    private Button btnSearch;
     private TextField name;
     private TextField sname;
+    private TimeFrame time;
+    private DropDownChoice selectrooms;
+    private DropDownChoice selectadults;
+    private DropDownChoice selectchildren;
+    private DateTextField tfDateIn;
+    private DateTextField tfDateOut;
+    private Button submit;
+
+
+    private Date dateIn = new Date();
+    private Date dateOut = new Date();
+
     public HomePage() {
         Form form = new Form("form");
-        name = new TextField("name", new Model(""));
+        name = new TextField<String>("name", new Model(""));
         sname = new PasswordTextField("sname", new Model(""));
+        selectrooms = new DropDownChoice("rooms");
+        selectadults = new DropDownChoice("adults");
+        selectchildren = new DropDownChoice("children");
+        searchLabel = new TextField("search");
+        btnSearch = new Button("btnSearch");
+        submit = new Button("button") {
+            @Override
+            public void onSubmit() {
+                String value = (String) name.getModelObject();
+                String value2 = (String) sname.getModelObject();
+//                label.setObject(value);
+//                label2.setModelObject(value2);
+//                name.setModelObject("");
+//                sname.setModelObject("");
+            }
+        };
+
+        tfDateIn = new DateTextField("dateIn", new PropertyModel<Date>(
+                this, "dateIn"), new StyleDateConverter("S-", true));
+        DatePicker datePicker = new DatePicker();
+        datePicker.setShowOnFieldClick(true);
+        datePicker.setAutoHide(true);
+        tfDateIn.add(datePicker);
+
+        tfDateOut = new DateTextField("dateOut", new PropertyModel<Date>(
+                this, "dateIn"), new StyleDateConverter("S-", true));
+        DatePicker datePicker2 = new DatePicker();
+        datePicker2.setShowOnFieldClick(true);
+        datePicker2.setAutoHide(true);
+        tfDateOut.add(datePicker2);
+//        select.add()
+
         form.add(name);
         form.add(sname);
-        form.add(new Button("button"){
-            @Override
-        public void onSubmit(){
-                String value = (String)name.getModelObject();
-                String value2 = (String)sname.getModelObject();
-                label.setModelObject(value);
-                label2.setModelObject(value2);
-                name.setModelObject("");
-                sname.setModelObject("");
-            }
-        });
+        form.add(selectrooms);
+        form.add(selectadults);
+        form.add(selectchildren);
+        form.add(submit);
         add(form);
-        add(label = new Label ("message", new Model("")));
-        add(label2 = new Label ("message2", new Model("")));
-
-
+        form.add(searchLabel);
+        form.add(tfDateIn);
+        form.add(tfDateOut );
+        form.add(btnSearch);
     }
-
-	// TODO Add any page properties or variables here
-
-    /**
-	 * Constructor that is invoked when page is invoked without a session.
-	 * 
-	 * @param parameters
-	 *            Page parameters
-	 */
-
-
-        // Add the simplest type of label
-        // TODO Add your page's components here
-    }
-
-
-
+}

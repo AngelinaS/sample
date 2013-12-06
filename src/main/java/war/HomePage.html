@@ -1,20 +1,184 @@
 <html>
-    <head>
-        <title>Framework</title>
-    </head>
-    <body>
-    <h1>Framework</h1>
-    <form wicket:id="form">
-         <em>Name </em>
-         <input wicket:id="name" type="text" />
-        <br>
-        <em>Password </em>
-        <input wicket:id="sname" type="password"/>
-        <br>
-        <input wicket:id="button" type="submit" value="Submit"/>
-     </form>
-    <span wicket:id="message">text</span>
-    <span wicket:id="message2">text</span>
-    </body>
+<head>
+    <title>Booking</title>
+</head>
+<style>
+   body, html
+    {
+         margin: 0;
+        padding: 0;
+    }
+    h1
+    {
+        font-family: sans-serif;
+        color: #ffffff;
+        text-align: left;
+    }
+    h2
+    {
+        font-family: sans-serif;
+        color: #00008b;
+    }
+    A:link
+    {
+        color: #c9ddff;
+        text-decoration: none;
+    }
+    A:active
+    {
+        color:#c9ddff
+    }
+    A:visited
+    {
+        color:#c9ddff
+    }
+    A:hover
+    {
+        text-decoration: none;
+    }
+    p.p1
+    {
+        font-family: sans-serif;
+        color: #00008b;
+    }
+    pre.pre1
+    {
+        font-family: sans-serif;
+        color: #00008b;
+    }
+</style>
+<body>
+
+<form wicket:id="form">
+    <table frame="below" width="100%" height="70px" bgcolor=0E0E87 bordercolor=0012FF >
+        <tr>
+            <td></td>
+            <td valign="middle"><h1>Booking</h1> </td>
+            <td valign="middle" align="right">
+                <a href="Registration.html">Registration</a>
+            </td>
+            <td></td>
+        </tr>
+    </table>
+    <p></p>
+    <table  width="100%"  frame="void" cellspacing="0">
+        <tr>
+            <td width="1%"></td>
+            <td width="5%">
+                Name
+            </td>
+            <td  width="10%">
+                <input wicket:id="name" type="text" align="right" />
+            </td>
+            <td width="2%"></td>
+            <td width="2%" bgcolor="FFBC4C" rowspan="3"></td>
+            <td width="30%"  bgcolor="FFBC4C"  bordercolor="#00008b" >
+                <h2>Search</h2>
+            </td>
+            <td width="15%"  bgcolor="FFBC4C"  bordercolor="#00008b" >
+                <p class="p1" >Chek-in</p>
+            </td>
+            <td width="15%"  bgcolor="FFBC4C"  bordercolor="#00008b" >
+                <p class="p1" >Chek-out</p>
+            </td>
+            <td width="2%" bgcolor="FFBC4C" rowspan="3"></td>
+            <td width="18%"> </td>
+        </tr>
+        <tr>
+        <td></td>
+        <td width="5%">Password </td>
+        <td width="10%">
+            <input wicket:id="sname" type="password" />
+        </td>
+            <td></td>
+            <td bgcolor="FFBC4C">
+                <input wicket:id="search" type="text" placeholder="e.g. city, country, hotel name" size="50px"/>
+            </td>
+            <td   bgcolor="FFBC4C"  bordercolor="#00008b" >
+                <input wicket:id="dateIn" type="text" />
+            </td>
+            <td   bgcolor="FFBC4C"  bordercolor="#00008b" >
+                <input wicket:id="dateOut" type="text" />
+            </td>
+            <td > </td>
+        </tr>
+        <tr>
+           <td></td>
+           <td width="5%"></td>
+           <td width="10%" align="right">
+               <input wicket:id="button" type="submit" value="Login" />
+           </td>
+            <td></td>
+            <td bgcolor="FFBC4C">
+            </td>
+            <td   bgcolor="FFBC4C"  bordercolor="#00008b" >
+            </td>
+            <td  bgcolor="FFBC4C"  bordercolor="#00008b"  >
+            </td>
+            <td>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="4"> </td>
+            <td bgcolor="FFBC4C">
+
+            </td>
+            <td bgcolor="FFBC4C">
+                <pre class="pre1">
+                    Rooms  <select wicket:id="rooms"/>
+                    Adults <select wicket:id="adults"/>
+                    Children <select wicket:id="children"/>
+                </pre>
+            </td>
+            <td bgcolor="FFBC4C">
+            </td>
+            <td bgcolor="FFBC4C">
+            </td>
+            <td bgcolor="FFBC4C">
+            </td>
+        </tr>
+        <tr>
+            <td colspan="4"> </td>
+            <td bgcolor="FFBC4C">
+
+            </td>
+            <td bgcolor="FFBC4C">
+
+            </td>
+            <td bgcolor="FFBC4C">
+
+            </td>
+            <td bgcolor="FFBC4C" align="right">
+                <input wicket:id="btnSearch"  type="submit"  value="Search"   />
+            </td>
+            <td bgcolor="FFBC4C">
+
+            </td>
+        </tr>
+    </table>
+    <p></p>
+    <table  width="100%"  frame="void" cellspacing="0">
+        <tr >
+            <td width="20%" >
+
+            </td>
+            <td width="63%" >
+
+            </td>
+            <td width="17%">
+
+            </td>
+        </tr>
+    </table>
+
+</form>
+<!--<span wicket:id="message">text</span>-->
+<!--<span wicket:id="message2">text</span>-->
+<!--<table wicket:id="repeater">-->
+<!--<tr> <td>text</td> <td>text2</td></tr>-->
+<!--<tr> <td>text</td> <td>text2</td></tr>-->
+<!--</table>-->
+<!--</body>-->
+</body>
 </html>
 
