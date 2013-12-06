@@ -1,11 +1,6 @@
 package war;
 
-/**
- * Created with IntelliJ IDEA.
- * User: Ангел
- * Date: 13.5.12
- * Time: 19:36
- * To change this template use File | Settings | File Templates.
- */
-public class Adminpage {
+import org.apache.wicket.markup.html.WebPage;
+
+public class AdminPage  extends WebPage {
 }

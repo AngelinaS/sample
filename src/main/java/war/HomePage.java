@@ -28,7 +28,6 @@ public class HomePage extends WebPage {
     private DateTextField tfDateOut;
     private Button submit;
 
-
     private Date dateIn = new Date();
     private Date dateOut = new Date();
 
