@@ -1,9 +1,152 @@
-<!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/html">
 <head>
-    <title></title>
+    <title>User Profile Page</title>
 </head>
-<body>
+<style>
+    body, html
+    {
+        margin: 0;
+        padding: 0;
+    }
+    A:link
+    {
+        color: #c9ddff;
+        text-decoration: none;
+    }
+    A:active
+    {
+        color:#c9ddff
+    }
+    A:visited
+    {
+        color:#c9ddff
+    }
+    A:hover
+    {
+        text-decoration: none;
+    }
+    h1
+    {
+        font-family: sans-serif;
+        color: #ffffff;
+        text-align: left;
+    }
+    p.name
+    {
+        font-family: sans-serif;
+        color: #4267d6;
+        font-size: x-large;
 
+    }
+    p.p1
+    {
+        font-family: sans-serif;
+        color: #00008b;
+    }
+    p.text
+    {
+        font-family: sans-serif;
+        color: #4267d6;
+        font-style: inherit;
+    }
+    #submit
+    {
+        background-color: #15adff;
+        -moz-border-radius: 10px;
+        -webkit-border-radius: 10px;
+        border-radius:10px;
+        color: #f4f0ff;
+        font-family: 'sans-serif';
+        font-size: 20px;
+        text-decoration: none;
+        border-width: 3px;
+        border-style: solid;
+        border-color: white;
+
+    }
+    #submit:hover
+    {
+        background: #1943a8;
+        border-width: 3px;
+        border-style: solid;
+        border-color: white;
+    }
+</style>
+<body>
+<form wicket:id="form">
+    <table frame="below" width="100%" height="70px" bgcolor=0E0E87 bordercolor=0012FF >
+        <tr></tr>
+        <tr valign="middle">
+            <td width="1%" ></td>
+            <td ><a href="HomePage.html"><h1>Booking</h1></a></td>
+            <td align="right">
+                <a wicket:id="login" href="HomePage.html" >Log out</a>
+            </td>
+            <td></td>
+        </tr>
+    </table>
+    <p></p>
+    <table width="550px" rules=none align="center" bgcolor="FEFFD7" frame=border  cellspacing="0" bordercolor="#FFBC4C" border="1px" cellpadding="7" >
+        <tr>
+            <td width="160px" >
+                <p class="name"> <span wicket:id="userLogin">User login</span></p>
+            </td>
+            <td width="230px">
+            </td>
+            <td width="160px">
+            </td>
+        </tr>
+        <tr>
+            <td align="right">
+                <p class="p1">Name</p>
+            </td>
+            <td>
+                <p class="text"> <span wicket:id="name">Name</span></p>
+            </td>
+            <td> </td>
+        </tr>
+        <tr>
+            <td align="right">
+                <p class="p1">Surname</p>
+            </td>
+            <td>
+                <p class="text"> <span wicket:id="surname">Surname</span></p>
+            </td>
+            <td>  </td>
+        </tr>
+        <tr>
+            <td align="right">
+                <p class="p1">Birthday</p>
+            </td>
+            <td>
+                <p class="text"> <span wicket:id="birthday">Birthday</span></p>
+            </td>
+            <td> </td>
+        </tr>
+        <tr>
+            <td align="right">
+                <p class="p1">E-mail</p>
+            </td>
+            <td>
+                <p class="text"> <span wicket:id="email">E-mail</span></p>
+            </td>
+            <td> </td>
+        </tr>
+        <tr>
+
+        </tr>
+        <tr>
+            <td>
+                <input wicket:id="changeData" type="button" value="Change data" id="submit" />
+            </td>
+            <td>
+                <input wicket:id="changePass" type="button" value="Change password" id="submit" />
+            </td>
+            <td >
+                <input wicket:id="delete" type="button" value="Delete profile" id="submit" />
+            </td>
+        </tr>
+    </table>
+</form>
 </body>
 </html>

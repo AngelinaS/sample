@@ -1,9 +1,326 @@
-<!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/html">
 <head>
-    <title></title>
+    <title>Add hotel</title>
+    <style>
+        body, html
+        {
+            margin: 0;
+            padding: 0;
+        }
+        h1
+        {
+            font-family: sans-serif;
+            color: #ffffff;
+            text-align: left;
+        }
+        A:link
+        {
+            text-decoration: none;
+        }
+        h2
+        {
+            font-family: sans-serif;
+            color: #00008b;
+
+        }
+        p.p1
+        {
+            font-family: sans-serif;
+            color: #00008b;
+        }
+        pre.pre1
+        {
+            font-family: sans-serif;
+            color: #00008b;
+        }
+        #submit
+        {
+            background-color: #15adff;
+            -moz-border-radius: 10px;
+            -webkit-border-radius: 10px;
+            border-radius:10px;
+            color: #f4f0ff;
+            font-family: 'sans-serif';
+            font-size: 20px;
+            text-decoration: none;
+            border-width: 3px;
+            border-style: solid;
+            border-color: white;
+        }
+        #submit:hover
+        {
+            background: #1943a8;
+            border-width: 3px;
+            border-style: solid;
+            border-color: white;
+        }
+        #a1:link
+        {
+            color: #000484;
+            text-decoration: none;
+            font-size: x-large;
+        }
+        #a1:active
+        {
+            color:#000484
+        }
+        #a1:visited
+        {
+            color:#000484
+        }
+        #a1:hover
+        {
+            text-decoration: none;
+        }
+        p.text
+        {
+            font-family: sans-serif;
+            color: #4267d6;
+            font-style: inherit;
+        }
+        p.text2
+        {
+            font-family: sans-serif;
+            color: #6362ff;
+            font-style: normal;
+        }
+    </style>
 </head>
 <body>
+<form wicket:id="form">
+    <table frame="below" width="100%" height="70px" bgcolor=3D77FF bordercolor=0012FF >
+        <tr></tr>
+        <tr valign="middle">
+            <td  width="1%"></td>
+            <td ><a href="AdminPage.html"><h1>Booking</h1></a></td>
+            <td align="right" width=7%>
+                <a wicket:id="login" href="UserProfilePage.html" id="a1" >Admin</a>
+            </td>
+            <td width="1%"></td>
+        </tr>
+    </table>
+    <p></p>
+    <table width="930px" rules=none align="center" bgcolor="FEFFD7" frame=border  cellspacing="0" bordercolor="#FFBC4C" border="1px" cellpadding="7" >
+        <tr>
+            <td width="200px" >
+                <h2>Add hotel</h2>
+            </td>
+            <td width="700px"> </td>
+            <td width="30px"> </td>
+        </tr>
+        <tr>
+            <td align="right">
+                <p class="p1">Name</p>
+            </td>
+            <td>
+                <input wicket:id="name" type="text" size="50px"/>
+            </td>
+            <td> </td>
+        </tr>
+        <tr>
+            <td align="right">
+                <p class="p1">Country</p>
+            </td>
+            <td>
+                <input wicket:id="country" type="text"  size="50px"/>
+            </td>
+            <td> </td>
+        </tr>
+        <tr>
+            <td align="right">
+                <p class="p1">City</p>
+            </td>
+            <td>
+                <input wicket:id="city" type="text"  size="50px"/>
+            </td>
+            <td> </td>
+        </tr>
+        <tr>
+            <td align="right">
+                <p class="p1">Address</p>
+            </td>
+            <td>
+                <input wicket:id="address" type="text"  size="50px"/>
+            </td>
+            <td> </td>
+        </tr>
+        <tr>
+            <td align="right">
+                <p class="p1">Telephone</p>
+            </td>
+            <td>
+                <input wicket:id="tel" type="text"  size="50px"/>
+            </td>
+            <td> </td>
+        </tr>
+        <tr>
+            <td align="right">
+                <p class="p1">Stars</p>
+            </td>
+            <td>
+                <select wicket:id="stars"/>
+            </td>
+            <td> </td>
+        </tr>
+        <tr>
+            <td align="right">
+                <p class="p1">Rooms quantity</p>
+            </td>
+            <td>
+                <input wicket:id="roomsQuantity" type="text"  size="50px"/>
+            </td>
+            <td> </td>
+        </tr>
+        <tr>
+            <td align="right">
+                <p class="p1">Image</p>
+            </td>
+            <td>
+                <p class="text"> <input wicket:id="image" type="file"  /> </p>
+            </td>
+            <td> </td>
+        </tr>
+        <tr>
+            <td align="right">
+                <p class="p1">Parking</p>
+            </td>
+            <td>
+                <p class="text"> Yes <input wicket:id="parking" type="radio" value="yes" name="radio">
+                    No <input wicket:id="parking" type="radio" value="no" name="radio"></p>
+            </td>
+            <td> </td>
+        </tr>
+        <tr>
+            <td align="right">
+                <p class="p1">Wifi</p>
+            </td>
+            <td>
+                <p class="text"> Yes <input wicket:id="wifi" type="radio" value="yes" name="radio2">
+                    No <input wicket:id="wifi" type="radio" value="no" name="radio2"></p>
+            </td>
+            <td> </td>
+        </tr>
+        <tr>
+            <td align="right">
+                <p class="p1">Pets</p>
+            </td>
+            <td>
+                <p class="text"> Yes <input wicket:id="pets" type="radio" value="yes" name="radio3">
+                    No <input wicket:id="pets" type="radio" value="no" name="radio3"></p>
+            </td>
+            <td> </td>
+        </tr>
+        <tr>
+            <td align="right">
+                <p class="p1">Description</p>
+            </td>
+            <td>
+                <textarea wicket:id="description" cols="70" rows="7"> </textarea>
+            </td>
+            <td> </td>
+        </tr>
+        <tr>
+            <td align="right">
+                <p class="p1">Services</p>
+            </td>
+            <td>
+                <textarea wicket:id="services" cols="70" rows="7"> </textarea>
+            </td>
+            <td> </td>
+        </tr>
 
+        <tr>
+            <td align="right">
+                <p class="p1">Food and Drink</p>
+            </td>
+            <td>
+                <textarea wicket:id="foodAndDrink" cols="70" rows="7"> </textarea>
+            </td>
+            <td> </td>
+        </tr>
+        <tr>
+            <td align="right">
+                <p class="p1">Activities</p>
+            </td>
+            <td>
+                <textarea wicket:id="activities" cols="70" rows="7"> </textarea>
+            </td>
+            <td> </td>
+        </tr>
+        <tr>
+            <td align="right">
+                <p class="p1">Hotel rooms</p>
+            </td>
+            <td>
+                <table>
+                    <tr>
+                        <td width="250px">
+                           <p class="text">Room Type </p>
+                        </td>
+                        <td width="450px">
+                            <input wicket:id="roomType" type="text"  size="45px"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td >
+                            <p class="text">Quantity rooms in hotel </p>
+                        </td>
+                        <td >
+                            <input wicket:id="roomsQuant" type="text"  size="45px"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td >
+                            <p class="text">Price </p>
+                        </td>
+                        <td >
+                            <input wicket:id="price" type="text"  size="45px"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td >
+                            <p class="text">Rooms in room </p>
+                        </td>
+                        <td >
+                            <input wicket:id="rooms" type="text"  size="45px"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td >
+                            <p class="text">For one person beds </p>
+                        </td>
+                        <td >
+                            <input wicket:id="onePerBedQuant" type="text"  size="45px"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td >
+                            <p class="text">For two persons beds </p>
+                        </td>
+                        <td >
+                            <input wicket:id="twoPerBedQuant" type="text"  size="45px"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td >
+                            <p class="text"></p>
+                        </td>
+                        <td >
+                            <input wicket:id="more" type="button"  id="submit" value="More types"/>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td align="center">
+                <input wicket:id="submit" type="submit" value="CREATE" id="submit" />
+            </td>
+            <td > </td>
+        </tr>
+    </table>
+</form>
 </body>
 </html>

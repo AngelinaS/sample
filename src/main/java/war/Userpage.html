@@ -1,9 +1,231 @@
-<!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/html">
 <head>
-    <title></title>
+    <title>Booking</title>
 </head>
-<body>
+<style>
+    body, html
+    {
+        margin: 0;
+        padding: 0;
+    }
+    h1
+    {
+        font-family: sans-serif;
+        color: #ffffff;
+        text-align: left;
+    }
+    h2
+    {
+        font-family: sans-serif;
+        color: #00008b;
+    }
+    p.p1
+    {
+        font-family: sans-serif;
+        color: #00008b;
+    }
+    pre.pre1
+    {
+        font-family: sans-serif;
+        color: #00008b;
+    }
 
+    #submit
+    {
+        background-color: #15adff;
+        -moz-border-radius: 10px;
+        -webkit-border-radius: 10px;
+        border-radius:10px;
+        color: #f4f0ff;
+        font-family: 'sans-serif';
+        font-size: 20px;
+        text-decoration: none;
+        border-width: 3px;
+        border-style: solid;
+        border-color: white;
+
+    }
+    #submit:hover
+    {
+        background: #1943a8;
+        border-width: 3px;
+        border-style: solid;
+        border-color: white;
+    }
+    #td
+    {
+        border-color: #1943a8;
+        border-style: solid;
+        border-width: 1px;
+    }
+    #td:hover
+    {
+        border-color: #FFBC4C;
+        border-style: solid;
+        border-width: 1px;
+    }
+    .border
+    {
+        border-color:#1943a8;
+    }
+    .border:hover
+    {
+        border-color:#FFBC4C;
+    }
+    p.name
+    {
+        font-family: sans-serif;
+        color: #4267d6;
+        font-size: x-large;
+
+    }
+    p.hotel
+    {
+        font-family: sans-serif;
+        color: #4267d6;
+        font-size: large;
+
+    }
+    p.price
+    {
+        font-family: sans-serif;
+        color: #4267d6;
+        font-size: x-large;
+    }
+    p.user
+    {
+        color: #f4f0ff;
+        font-family: 'sans-serif';
+    }
+    A:link
+    {
+        color: #c9ddff;
+        text-decoration: none;
+    }
+    A:active
+    {
+        color:#c9ddff
+    }
+    A:visited
+    {
+        color:#c9ddff
+    }
+    A:hover
+    {
+        text-decoration: none;
+    }
+</style>
+<body>
+<form wicket:id="form">
+    <table frame="below" width="100%" height="70px" bgcolor=0E0E87 bordercolor=0012FF >
+        <tr></tr>
+        <tr valign="middle">
+            <td width="1%" ></td>
+            <td ><h1>Booking</h1> </td>
+            <td align="right">
+                <a wicket:id="login" href="UserProfilePage.html" >User name</a>
+            </td>
+            <td></td>
+        </tr>
+    </table>
+    <p></p>
+    <table  width="100%"  frame="void" cellspacing="0">
+        <tr>
+            <td width="1%"></td>
+            <td width="6%">
+            </td>
+            <td  width="9%">
+            </td>
+            <td width="2%"></td>
+            <td width="1%" bgcolor="FFBC4C" rowspan="3"></td>
+            <td width="30%"  bgcolor="FFBC4C"  bordercolor="#00008b" >
+                <h2>Search</h2>
+            </td>
+            <td width="15%"  bgcolor="FFBC4C"  bordercolor="#00008b" >
+                <p class="p1" >Chek-in</p>
+            </td>
+            <td width="15%"  bgcolor="FFBC4C"  bordercolor="#00008b" >
+                <p class="p1" >Chek-out</p>
+            </td>
+            <td width="1%" bgcolor="FFBC4C" rowspan="3"></td>
+            <td width="20%"> </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+            </td>
+            <td>
+            </td>
+            <td></td>
+            <td bgcolor="FFBC4C">
+                <input wicket:id="search" type="text" placeholder="e.g. city, country, hotel name" size="50px"/>
+            </td>
+            <td bgcolor="FFBC4C"  bordercolor="#00008b" >
+                <input wicket:id="dateIn" type="text" />
+            </td>
+            <td   bgcolor="FFBC4C"  bordercolor="#00008b" >
+                <input wicket:id="dateOut" type="text" />
+            </td>
+            <td > </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td width="5%"></td>
+            <td width="10%" align="right">
+            </td>
+            <td></td>
+            <td bgcolor="FFBC4C" colspan="3">
+            </td>
+            <td></td>
+        </tr>
+        <tr>
+            <td colspan="4"> </td>
+            <td bgcolor="FFBC4C">
+            </td>
+            <td bgcolor="FFBC4C">
+               <pre class="pre1">Rooms   <select wicket:id="rooms"/>      Adults   <select wicket:id="adults"/>      Children    <select wicket:id="children"/>
+               </pre>
+            </td>
+            <td bgcolor="FFBC4C" colspan="3"> </td>
+        </tr>
+        <tr valign="top">
+            <td  colspan="4"> </td>
+            <td colspan="3" bgcolor="FFBC4C">
+                <pre>  </pre>
+                <pre>  </pre>
+            </td>
+            <td bgcolor="FFBC4C" align="right">
+                <input wicket:id="btnSearch"  type="submit"  value="Search" id="submit" />
+            </td>
+            <td bgcolor="FFBC4C">
+            </td>
+        </tr>
+    </table>
+    <p></p>
+    <table  width="100%"  cellspacing="0" >
+        <tr >
+            <td width="19%">
+            </td>
+            <td width="15%" bgcolor="FEFFD7">
+                <input type="image" border="2px" class="border" />
+            </td>
+            <td width="27%" bgcolor="FEFFD7">
+                <p class="name"> <span wicket:id="name">Name</span></p>
+                <p class="hotel"> <span wicket:id="country">Country</span></p>
+                <p class="hotel"><span wicket:id="city">City</span></p>
+                <p class="hotel"><span wicket:id="stars">Stars</span></p>
+            </td>
+            <td width="20%" bgcolor="FEFFD7">
+                <p class="hotel">From </p>
+                <p class="price"><span wicket:id="price">Price</span></p>
+                <p></p>
+                <input wicket:id="more" type="button" id="submit" value="More" />
+            </td>
+            <td width="19%">
+            </td>
+        </tr>
+    </table>
+</form>
 </body>
 </html>
+

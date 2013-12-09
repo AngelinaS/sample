@@ -1,9 +1,147 @@
-<!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/html">
+
 <head>
-    <title></title>
+    <title>Registration</title>
+    <style>
+        body, html
+        {
+            margin: 0;
+            padding: 0;
+        }
+        h1
+        {
+            font-family: sans-serif;
+            color: #ffffff;
+            text-align: left;
+        }
+        A:link
+        {
+           text-decoration: none;
+        }
+        h2
+        {
+            font-family: sans-serif;
+            color: #00008b;
+
+        }
+        p.p1
+        {
+            font-family: sans-serif;
+            color: #00008b;
+        }
+        pre.pre1
+        {
+            font-family: sans-serif;
+            color: #00008b;
+        }
+        #submit
+        {
+            background-color: #15adff;
+            -moz-border-radius: 10px;
+            -webkit-border-radius: 10px;
+            border-radius:10px;
+            color: #f4f0ff;
+            font-family: 'sans-serif';
+            font-size: 20px;
+            text-decoration: none;
+            border-width: 3px;
+            border-style: solid;
+            border-color: white;
+        }
+        #submit:hover
+        {
+            background: #1943a8;
+            border-width: 3px;
+            border-style: solid;
+            border-color: white;
+        }
+    </style>
 </head>
 <body>
+<form wicket:id="form">
+    <table frame="below" width="100%" height="70px" bgcolor=0E0E87 bordercolor=0012FF >
+        <tr></tr>
+        <tr valign="middle">
+            <td  width="1%"></td>
+            <td ><a href="HomePage.html"><h1>Booking</h1></a></td>
+        </tr>
+    </table>
+    <p></p>
+    <table width="550px" rules=none align="center" bgcolor="FEFFD7" frame=border  cellspacing="0" bordercolor="#FFBC4C" border="1px" cellpadding="7" >
+        <tr>
+            <td width="160px" >
+             <h2>Registration</h2>
+            </td>
+            <td width="290px">
 
+            </td>
+            <td width="100px">
+            </td>
+        </tr>
+        <tr>
+            <td align="right">
+                  <p class="p1">Name</p>
+            </td>
+            <td>
+                <input wicket:id="name" type="text" size="20px"/>
+            </td>
+            <td> </td>
+        </tr>
+        <tr>
+            <td align="right">
+                <p class="p1">Surname</p>
+            </td>
+            <td>
+                <input wicket:id="surname" type="text"  size="20px"/>
+            </td>
+            <td></td>
+        </tr>
+        <tr>
+            <td align="right">
+                <p class="p1">Birthday</p>
+            </td>
+            <td>
+               <pre class="pre1">Year  <select wicket:id="year"/>       Month   <select wicket:id="month"/>       Day   <select wicket:id="day"/>
+               </pre>
+            </td>
+            <td></td>
+        </tr>
+        <tr>
+            <td align="right">
+                <p class="p1">Password</p>
+            </td>
+            <td>
+                <input wicket:id="pass1" type="password"  size="20px"/>
+            </td>
+            <td> </td>
+        </tr>
+        <tr>
+            <td align="right">
+                <p class="p1">Repeat password</p>
+            </td>
+            <td>
+                <input wicket:id="pass2" type="password"  size="20px"/>
+            </td>
+            <td> </td>
+        </tr>
+        <tr>
+            <td align="right">
+                <p class="p1">E-mail</p>
+            </td>
+            <td>
+                <input wicket:id="email" type="email"  size="20px"/>
+            </td>
+            <td> </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td >
+                <input wicket:id="submit" type="submit" value="Create" id="submit" />
+            </td>
+        </tr>
+    </table>
+
+</form>
 </body>
 </html>

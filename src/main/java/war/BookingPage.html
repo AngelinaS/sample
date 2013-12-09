@@ -1,9 +1,139 @@
-<!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/html">
+
 <head>
-    <title></title>
+    <title>Booking Page</title>
+    <style>
+        body, html
+        {
+            margin: 0;
+            padding: 0;
+        }
+        h1
+        {
+            font-family: sans-serif;
+            color: #ffffff;
+            text-align: left;
+        }
+        A:link
+        {
+            text-decoration: none;
+        }
+        h2
+        {
+            font-family: sans-serif;
+            color: #00008b;
+
+        }
+        p.p1
+        {
+            font-family: sans-serif;
+            color: #00008b;
+        }
+        pre.pre1
+        {
+            font-family: sans-serif;
+            color: #00008b;
+        }
+        #submit
+        {
+            background-color: #15adff;
+            -moz-border-radius: 10px;
+            -webkit-border-radius: 10px;
+            border-radius:10px;
+            color: #f4f0ff;
+            font-family: 'sans-serif';
+            font-size: 20px;
+            text-decoration: none;
+            border-width: 3px;
+            border-style: solid;
+            border-color: white;
+        }
+        #submit:hover
+        {
+            background: #1943a8;
+            border-width: 3px;
+            border-style: solid;
+            border-color: white;
+        }
+        A:link
+        {
+            color: #c9ddff;
+            text-decoration: none;
+        }
+        A:active
+        {
+            color:#c9ddff
+        }
+        A:visited
+        {
+            color:#c9ddff
+        }
+        A:hover
+        {
+            text-decoration: none;
+        }
+    </style>
 </head>
 <body>
-
+<form wicket:id="form">
+    <table frame="below" width="100%" height="70px" bgcolor=0E0E87 bordercolor=0012FF >
+        <tr></tr>
+        <tr valign="middle">
+            <td width="1%" ></td>
+            <td ><a href="HomePage.html"><h1>Booking</h1></a></td>
+            <td align="right">
+                <a wicket:id="login" href="UserProfilePage.html" >User name</a>
+            </td>
+            <td></td>
+        </tr>
+    </table>
+    <p></p>
+    <table width="550px" rules=none align="center" bgcolor="FEFFD7" frame=border  cellspacing="0" bordercolor="#FFBC4C" border="1px" cellpadding="7" >
+        <tr>
+            <td width="160px" >
+                <h2>Booking</h2>
+            </td>
+            <td width="290px">
+                <h2> <span wicket:id="hotelName">Hotel name</span></h2>
+            </td>
+            <td width="100px">
+            </td>
+        </tr>
+        <tr>
+            <td align="right">
+                <p class="p1">Check-In</p>
+            </td>
+            <td>
+                <input wicket:id="checkIn" type="text" />
+            </td>
+            <td> </td>
+        </tr>
+        <tr>
+            <td align="right">
+                <p class="p1">Check-Out</p>
+            </td>
+            <td>
+                <input wicket:id="checkOut" type="text" />
+            </td>
+            <td> </td>
+        </tr>
+        <tr>
+            <td align="right">
+                <p class="p1">Room Types</p>
+            </td>
+            <td>
+                <select wicket:id="roomTypes"/>
+            </td>
+            <td> </td>
+        </tr>
+        <tr>
+            <td> </td>
+            <td> </td>
+            <td >
+                <input wicket:id="submit" type="submit" value="Book" id="submit" />
+            </td>
+        </tr>
+    </table>
+</form>
 </body>
 </html>

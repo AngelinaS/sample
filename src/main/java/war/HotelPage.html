@@ -1,0 +1,264 @@
+<html xmlns="http://www.w3.org/1999/html">
+<head>
+    <title>Hotel Page</title>
+</head>
+<style>
+    body, html
+    {
+        margin: 0;
+        padding: 0;
+    }
+    A:link
+    {
+        color: #c9ddff;
+        text-decoration: none;
+    }
+    A:active
+    {
+        color:#c9ddff
+    }
+    A:visited
+    {
+        color:#c9ddff
+    }
+    A:hover
+    {
+        text-decoration: none;
+    }
+    h1
+    {
+        font-family: sans-serif;
+        color: #ffffff;
+        text-align: left;
+    }
+    p.name
+    {
+        font-family: sans-serif;
+        color: #4267d6;
+        font-size: x-large;
+
+    }
+    p.p1
+    {
+        font-family: sans-serif;
+        color: #00008b;
+    }
+    p.text
+    {
+        font-family: sans-serif;
+        color: #4267d6;
+        font-style: inherit;
+    }
+    #submit
+    {
+        background-color: #15adff;
+        -moz-border-radius: 10px;
+        -webkit-border-radius: 10px;
+        border-radius:10px;
+        color: #f4f0ff;
+        font-family: 'sans-serif';
+        font-size: 20px;
+        text-decoration: none;
+        border-width: 3px;
+        border-style: solid;
+        border-color: white;
+
+    }
+    #submit:hover
+    {
+        background: #1943a8;
+        border-width: 3px;
+        border-style: solid;
+        border-color: white;
+    }
+    .border
+    {
+        border-color:#1943a8;
+    }
+</style>
+<body>
+<form wicket:id="form">
+    <table frame="below" width="100%" height="70px" bgcolor=0E0E87 bordercolor=0012FF >
+        <tr></tr>
+        <tr valign="middle">
+            <td width="1%" ></td>
+            <td ><a href="HomePage.html"><h1>Booking</h1></a></td>
+            <td align="right">
+                <a wicket:id="login" href="UserProfilePage.html" >User name</a>
+            </td>
+            <td></td>
+        </tr>
+    </table>
+    <p></p>
+    <table width="950px" rules=none align="center" bgcolor="FEFFD7" frame=border  cellspacing="0" bordercolor="#FFBC4C" border="1px" cellpadding="7" >
+        <tr>
+            <td width="200px">
+                <p class="name" > <span wicket:id="hotelName">Hotel name</span></p>
+            </td>
+            <td width="550px">
+            </td>
+            <td width="200px" rowspan="6">
+                <input type="image" border="2px" class="border" />
+            </td>
+        </tr>
+        <tr>
+            <td align="right">
+                <p class="p1">Stars</p>
+            </td>
+            <td>
+                <p class="text"> <span wicket:id="stars">Stars</span></p>
+            </td>
+            <td> </td>
+        </tr>
+        <tr>
+            <td align="right">
+                <p class="p1">Country</p>
+            </td>
+            <td>
+                <p class="text"> <span wicket:id="country">Country</span></p>
+            </td>
+            <td> </td>
+        </tr>
+        <tr>
+            <td align="right">
+                <p class="p1">City</p>
+            </td>
+            <td>
+                <p class="text"> <span wicket:id="city">City</span></p>
+            </td>
+            <td> </td>
+        </tr>
+        <tr>
+            <td align="right">
+                <p class="p1">Address</p>
+            </td>
+            <td>
+                <p class="text"> <span wicket:id="address">Address</span></p>
+            </td>
+            <td> </td>
+        </tr>
+        <tr>
+            <td align="right">
+                <p class="p1">Rooms</p>
+            </td>
+            <td>
+                <p class="text"> <span wicket:id="roms">Rooms</span></p>
+            </td>
+            <td> </td>
+        </tr>
+
+        <tr>
+            <td align="right">
+                <p class="p1">Pets</p>
+            </td>
+            <td>
+                <p class="text"> <span wicket:id="pets">Pets</span></p>
+            </td>
+            <td>  </td>
+        </tr>
+        <tr>
+            <td align="right">
+                <p class="p1">Food and Drink</p>
+            </td>
+            <td>
+                <p class="text"> <span wicket:id="foodAndDrink">Food and Drink</span></p>
+            </td>
+            <td> </td>
+        </tr>
+        <tr>
+            <td align="right">
+                <p class="p1">Activities</p>
+            </td>
+            <td>
+                <p class="text"> <span wicket:id="tel">Activities</span></p>
+            </td>
+            <td> </td>
+        </tr>
+        <tr>
+            <td align="right">
+                <p class="p1">Description</p>
+            </td>
+            <td>
+                <p class="text"> <span wicket:id="description">Description</span></p>
+            </td>
+            <td> </td>
+        </tr>
+        <tr>
+            <td align="right">
+                <p class="p1">Services</p>
+            </td>
+            <td>
+                <p class="text"> <span wicket:id="services">Services</span></p>
+            </td>
+            <td> </td>
+        </tr>
+        <tr>
+            <td align="right">
+                <p class="p1">Parking</p>
+            </td>
+            <td>
+                <p class="text"> <span wicket:id="parking">Parking</span></p>
+            </td>
+            <td> </td>
+        </tr>
+        <tr>
+            <td align="right">
+                <p class="p1">Wifi</p>
+            </td>
+            <td>
+                <p class="text"> <span wicket:id="wifi">Wifi</span></p>
+            </td>
+            <td> </td>
+        </tr>
+        <tr>
+            <td align="right">
+                <p class="p1">Rooms Types and prices</p>
+            </td>
+            <td>
+                <table>
+                    <tr>
+                        <td width="450"><p class="text"> <span wicket:id="roomTypes">Rooms Types</span></p></td>
+                        <td width="100"><p class="text"> <span wicket:id="Price">Price</span></p> </td>
+                    </tr>
+
+                </table>
+
+            </td>
+            <td> </td>
+        </tr>
+        <tr>
+            <td align="right">
+                <p class="p1">Wifi</p>
+            </td>
+            <td>
+                <p class="text"> <span wicket:id="wifi">Wifi</span></p>
+            </td>
+            <td> </td>
+        </tr>
+        <tr>
+            <td align="right">
+                <p class="p1">Wifi</p>
+            </td>
+            <td>
+                <p class="text"> <span wicket:id="wifi">Wifi</span></p>
+            </td>
+            <td> </td>
+        </tr>
+        <tr>
+
+        </tr>
+        <tr>
+            <td>
+                <input wicket:id="changeData" type="button" value="Change data" id="submit" />
+            </td>
+            <td>
+                <input wicket:id="delete" type="button" value="Delete" id="submit" />
+            </td>
+            <td >
+                <input wicket:id="book" type="button" value="Book" id="submit" />
+            </td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>

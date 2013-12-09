@@ -3,9 +3,10 @@ package war.domain;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.security.PrivateKey;
 
-@Entity
-@Table(name = "HOTELS")
+//@Entity
+//@Table(name = "HOTELS")
 public class Hotel {
 
     @Id
@@ -16,6 +17,21 @@ public class Hotel {
 
     @Column(name = "NAME")
     private String name;
+
+    private String country;
+    private String city;
+    private String address;
+    private Long telephone;
+    private Integer stars;
+    private Integer roomsQuantity;
+    private Object image;
+    private String description;
+    private Boolean pets;
+    private String services;
+    private Boolean parking;
+    private Boolean wifi;
+    private String foodAndDrink;
+    private String activities;
 
     public String getName() {
         return name;

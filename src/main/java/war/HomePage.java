@@ -8,8 +8,11 @@ import org.apache.wicket.markup.html.form.*;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.model.PropertyModel;
 import org.apache.wicket.util.time.TimeFrame;
+import war.domain.HotelRepository;
 
+import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Homepage
@@ -30,14 +33,21 @@ public class HomePage extends WebPage {
 
     private Date dateIn = new Date();
     private Date dateOut = new Date();
+    private Integer one=1;
+    private Integer zero=0;
+
+    private static final List<Integer> listFive = Arrays.asList(
+            1,2, 3, 4, 5);
+    private static final List<Integer> listZero = Arrays.asList(
+            0, 1,2, 3, 4, 5 );
 
     public HomePage() {
         Form form = new Form("form");
         name = new TextField<String>("name", new Model(""));
         sname = new PasswordTextField("sname", new Model(""));
-        selectrooms = new DropDownChoice("rooms");
-        selectadults = new DropDownChoice("adults");
-        selectchildren = new DropDownChoice("children");
+        selectrooms = new DropDownChoice("rooms", new PropertyModel<Integer> (this, "one"), listFive);
+        selectadults = new DropDownChoice("adults", new PropertyModel<Integer>(this, "one"),listFive);
+        selectchildren = new DropDownChoice("children",new PropertyModel<Integer>(this,"zero"),listZero );
         searchLabel = new TextField("search");
         btnSearch = new Button("btnSearch");
         submit = new Button("button") {
@@ -65,7 +75,6 @@ public class HomePage extends WebPage {
         datePicker2.setShowOnFieldClick(true);
         datePicker2.setAutoHide(true);
         tfDateOut.add(datePicker2);
-//        select.add()
 
         form.add(name);
         form.add(sname);
