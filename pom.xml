@@ -26,6 +26,12 @@
 		</license>
 	</licenses>
 
+    <properties>
+        <wicket.version>1.5.5</wicket.version>
+        <jetty.version>6.1.4</jetty.version>
+        <hibernate.version>4.1.12.Final</hibernate.version>
+    </properties>
+
 	<dependencies>
 		<!--  WICKET DEPENDENCIES -->
 
@@ -38,6 +44,12 @@
         <dependency>
             <groupId>org.apache.wicket</groupId>
             <artifactId>wicket-datetime</artifactId>
+            <version>${wicket.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.wicket</groupId>
+            <artifactId>wicket-guice</artifactId>
             <version>${wicket.version}</version>
         </dependency>
 
@@ -147,11 +159,5 @@
 			</plugin>
 		</plugins>
 	</build>
-
-	<properties>
-		<wicket.version>1.5.5</wicket.version>
-		<jetty.version>6.1.4</jetty.version>
-        <hibernate.version>4.1.12.Final</hibernate.version>
-    </properties>
 
 </project>

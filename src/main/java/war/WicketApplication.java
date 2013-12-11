@@ -1,5 +1,6 @@
 package war;
 
+import org.apache.wicket.guice.GuiceComponentInjector;
 import org.apache.wicket.protocol.http.WebApplication;
 import war.domain.BookingRepository;
 import war.domain.HotelRepository;
@@ -11,14 +12,14 @@ import javax.persistence.Persistence;
 
 public class WicketApplication extends WebApplication {
 
-    public static EntityManagerFactory emf = Persistence.createEntityManagerFactory("booking");
+    public static EntityManagerFactory emf;
 
-    UserRepository userRepository= new UserRepository();
-
-    public WicketApplication() {
-
-        userRepository.loadById(2);
-        System.out.println("End");
+    @Override
+    protected void init()
+    {
+        super.init();
+        emf = Persistence.createEntityManagerFactory("booking");
+        getComponentInstantiationListeners().add(new GuiceComponentInjector(this));
     }
 
 	public Class<HomePage> getHomePage() {

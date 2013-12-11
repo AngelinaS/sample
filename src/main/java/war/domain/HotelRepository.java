@@ -3,8 +3,6 @@ package war.domain;
 import war.WicketApplication;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 import java.util.List;
 
 public class HotelRepository {
@@ -14,6 +12,11 @@ public class HotelRepository {
     public List<Hotel> loadByName(String name){
         return entityManager.createQuery("select h from Hotel h where h.name = :name", Hotel.class)
                 .setParameter("name", name)
+                .getResultList();
+    }
+
+    public List<Hotel> loadHotels() {
+        return entityManager.createQuery("select h from Hotel h order by h.name", Hotel.class)
                 .getResultList();
     }
 
