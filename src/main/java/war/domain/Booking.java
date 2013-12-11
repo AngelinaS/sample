@@ -2,10 +2,7 @@ package war.domain;
 
 import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Date;
 
 @Entity
@@ -19,10 +16,37 @@ public class Booking {
     private Date checkIn;
     private Date checkOut;
     private Date bookingDate;
-//    private int userID;
-//    private int hotelID;
-//    private int roomsID;
+    @ManyToOne
+    @JoinColumn(name = "USERID")
+    private User user;
 
+    @ManyToOne
+    @JoinColumn(name = "ROOMSID")
+    private Rooms rooms;
+
+    public Date getCheckOut() {
+        return checkOut;
+    }
+
+    public void setCheckOut(Date checkOut) {
+        this.checkOut = checkOut;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Date getCheckIn() {
+        return checkIn;
+    }
+
+    public void setCheckIn(Date checkIn) {
+        this.checkIn = checkIn;
+    }
 
     public int getBookingID() {
         return bookingID;
@@ -32,22 +56,6 @@ public class Booking {
         this.bookingID = bookingID;
     }
 
-    public Date getChekIn() {
-        return checkIn;
-    }
-
-    public void setChekIn(Date chekIn) {
-        this.checkIn = chekIn;
-    }
-
-    public Date getChekOut() {
-        return checkOut;
-    }
-
-    public void setChekOut(Date chekOut) {
-        this.checkOut = chekOut;
-    }
-
     public Date getBookingDate() {
         return bookingDate;
     }
@@ -55,4 +63,15 @@ public class Booking {
     public void setBookingDate(Date bookingDate) {
         this.bookingDate = bookingDate;
     }
+
+
+    public Rooms getRooms() {
+        return rooms;
+    }
+
+    public void setRooms(Rooms rooms) {
+        this.rooms = rooms;
+    }
+
+
 }

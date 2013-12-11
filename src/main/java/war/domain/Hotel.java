@@ -4,6 +4,7 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.security.PrivateKey;
+import java.util.List;
 
 @Entity
 @Table(name = "HOTELS")
@@ -27,6 +28,10 @@ public class Hotel {
     private Boolean wifi;
     private String foodAndDrink;
     private String activities;
+
+    @OneToMany(mappedBy = "rooms")
+    private List<Rooms> rooms;
+
 
     public String getName() {
         return name;
@@ -146,5 +151,13 @@ public class Hotel {
 
     public void setActivities(String activities) {
         this.activities = activities;
+    }
+
+    public List<Rooms> getRooms() {
+        return rooms;
+    }
+
+    public void setRooms(List<Rooms> rooms) {
+        this.rooms = rooms;
     }
 }

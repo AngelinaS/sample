@@ -14,12 +14,11 @@ public class WicketApplication extends WebApplication {
     public static EntityManagerFactory emf = Persistence.createEntityManagerFactory("booking");
 
     UserRepository userRepository= new UserRepository();
-    UserRepository repository = new UserRepository();
 
     public WicketApplication() {
 
-        repository.loadById(1);
         userRepository.loadById(2);
+        System.out.println("End");
     }
 
 	public Class<HomePage> getHomePage() {

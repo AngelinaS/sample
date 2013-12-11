@@ -3,11 +3,9 @@ package war.domain;
 
 import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table( name = "user")
@@ -17,7 +15,6 @@ import java.util.Date;
     @Id
     @GeneratedValue(generator="increment")
     @GenericGenerator(name="increment", strategy = "increment")
-
     private int userID;
     private String logIn;
     private String name;
@@ -25,6 +22,8 @@ import java.util.Date;
     private String password;
     private Date birthdate;
     private String email;
+    @OneToMany(mappedBy = "user")
+    private List<Booking> bookings;
 
     public int getUserID() {
         return userID;
@@ -81,4 +80,13 @@ import java.util.Date;
     public void setEmail(String email) {
         this.email = email;
     }
+
+    public List<Booking> getBookings() {
+        return bookings;
+    }
+
+    public void setBookings(List<Booking> bookings) {
+        this.bookings = bookings;
+    }
+
 }
