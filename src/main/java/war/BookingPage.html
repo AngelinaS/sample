@@ -72,6 +72,12 @@
         {
             text-decoration: none;
         }
+        p.text
+        {
+            font-family: sans-serif;
+            color: #4267d6;
+            font-style: inherit;
+        }
     </style>
 </head>
 <body>
@@ -104,7 +110,7 @@
                 <p class="p1">Check-In</p>
             </td>
             <td>
-                <input wicket:id="checkIn" type="text" />
+                <input wicket:id="checkIn" type="text" required/>
             </td>
             <td> </td>
         </tr>
@@ -113,7 +119,7 @@
                 <p class="p1">Check-Out</p>
             </td>
             <td>
-                <input wicket:id="checkOut" type="text" />
+                <input wicket:id="checkOut" type="text" required/>
             </td>
             <td> </td>
         </tr>
@@ -122,7 +128,25 @@
                 <p class="p1">Room Types</p>
             </td>
             <td>
-                <select wicket:id="roomTypes"/>
+                <select wicket:id="roomTypes" required/>
+            </td>
+            <td> </td>
+        </tr>
+        <tr>
+            <td align="right">
+                <p class="p1">Room Quantity</p>
+            </td>
+            <td>
+                <select wicket:id="roomQuantity"/>
+            </td>
+            <td> </td>
+        </tr>
+        <tr>
+            <td align="right">
+                <p class="p1">Total price</p>
+            </td>
+            <td>
+               <p class="text"> <span wicket:id="price">Price</span></p>
             </td>
             <td> </td>
         </tr>

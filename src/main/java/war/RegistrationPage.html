@@ -83,7 +83,7 @@
                   <p class="p1">Name</p>
             </td>
             <td>
-                <input wicket:id="name" type="text" size="20px"/>
+                <input wicket:id="name" type="text" size="20px" required/>
             </td>
             <td> </td>
         </tr>
@@ -98,10 +98,10 @@
         </tr>
         <tr>
             <td align="right">
-                <p class="p1">Birthday</p>
+                <p class="p1">Birthday </p>
             </td>
             <td>
-               <pre class="pre1">Year  <select wicket:id="year"/>       Month   <select wicket:id="month"/>       Day   <select wicket:id="day"/>
+               <pre class="pre1">Year  <select wicket:id="year" required/>       Month   <select wicket:id="month" required/>       Day   <select wicket:id="day" required/>
                </pre>
             </td>
             <td></td>
@@ -111,7 +111,7 @@
                 <p class="p1">Password</p>
             </td>
             <td>
-                <input wicket:id="pass1" type="password"  size="20px"/>
+                <input wicket:id="pass1" type="password"  size="20px" required/>
             </td>
             <td> </td>
         </tr>
@@ -120,7 +120,7 @@
                 <p class="p1">Repeat password</p>
             </td>
             <td>
-                <input wicket:id="pass2" type="password"  size="20px"/>
+                <input wicket:id="pass2" type="password"  size="20px" required/>
             </td>
             <td> </td>
         </tr>
@@ -129,7 +129,7 @@
                 <p class="p1">E-mail</p>
             </td>
             <td>
-                <input wicket:id="email" type="email"  size="20px"/>
+                <input wicket:id="email" type="email"  size="20px" required/>
             </td>
             <td> </td>
         </tr>

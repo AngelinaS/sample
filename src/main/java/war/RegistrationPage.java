@@ -5,10 +5,6 @@ import org.apache.wicket.markup.html.form.*;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.model.PropertyModel;
 
-import java.awt.*;
-import java.awt.Button;
-import java.awt.TextField;
-import java.awt.peer.TextFieldPeer;
 import java.util.*;
 
 public class RegistrationPage extends WebPage {
@@ -17,8 +13,8 @@ public class RegistrationPage extends WebPage {
     private DropDownChoice selectyear;
     private DropDownChoice selectmonth;
     private DropDownChoice selectday;
-    private TextField  password1;
-    private TextField password2;
+    private PasswordTextField  password1;
+    private PasswordTextField password2;
     private Button submit;
     private EmailTextField email;
     private static final java.util.List<Integer> listYears = Arrays.asList(
@@ -29,15 +25,16 @@ public class RegistrationPage extends WebPage {
     );
     public RegistrationPage () {
         Form form = new Form ("form");
-        name = new TextField<String>("name", new Model(""));
-        surname = new TextField<String>("surname", new Model(""));
-        password1 = new PasswordTextField<String>("pass1", new Model(""));
-        password2 = new PasswordTextField<String>("pass2", new Model(""));
+        name = new TextField("name", new Model(""));
+        surname = new TextField("surname" , new Model(""));
+        password1 = new PasswordTextField("pass1", new Model(""));
+        password2 = new PasswordTextField("pass2", new Model(""));
         selectyear = new DropDownChoice("year", new PropertyModel<Integer>(this, ""), listYears);
         selectmonth = new DropDownChoice("month", new PropertyModel<Integer>(this, ""),listMonth);
         selectday = new DropDownChoice("day",new PropertyModel<Integer>(this,""),listDays );
-        submit = new Button("search"){
-            @Override
+        submit = new Button("search")
+        {
+
         public void OnSubmit () {
                 String value = (String) name.getModelObject();
                 String value2 = (String) surname.getModelObject();
@@ -54,6 +51,7 @@ public class RegistrationPage extends WebPage {
         form.add(selectyear);
         form.add(submit);
         form.add(email);
+
 
     }
 
