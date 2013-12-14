@@ -41,20 +41,38 @@ public class RegistrationPage extends WebPage {
                 String namevalue = (String) name.getModelObject();
                 String surnamevalue = (String) surname.getModelObject();
                 String passwordvalue = (String) password1.getModelObject();
+                String passwordvalue2 = (String) password2.getModelObject();
                 String emailvalue = (String) email.getModelObject();
                 loginvalue = loginvalue.toLowerCase();
                 login.setModelObject(loginvalue);
                 name.setModelObject(namevalue);
                 surname.setModelObject(surnamevalue);
                 password1.setModelObject(passwordvalue);
+                password2.setModelObject(passwordvalue2);
                 email.setModelObject(emailvalue);
                 User loguser = userRepository.loadUserByLogin(loginvalue);
                 if (loguser == null){
-                    User user = userRepository.addUser(loginvalue, namevalue, surnamevalue, passwordvalue, emailvalue);
+                       if(passwordvalue.length()>6)
+                        {
+                            if (passwordvalue.equals(passwordvalue2))
+                            {
+                            User user = userRepository.addUser(loginvalue, namevalue, surnamevalue, passwordvalue, emailvalue);
+                            }
+                            else
+                            {
+                            JFrame frame = new JFrame();
+                            JOptionPane.showMessageDialog(frame, "incorrect password", "Error", JOptionPane.ERROR_MESSAGE);
+                            }
+                        }
+                        else
+                        {
+                            JFrame frame = new JFrame();
+                            JOptionPane.showMessageDialog(frame, "password is very small", "Error", JOptionPane.ERROR_MESSAGE);
+                        }
                 }
                 else {
                     JFrame frame = new JFrame();
-                    JOptionPane.showMessageDialog(frame, "no");
+                    JOptionPane.showMessageDialog(frame, "incorrect user login", "Error", JOptionPane.ERROR_MESSAGE);
                 }
 
 
