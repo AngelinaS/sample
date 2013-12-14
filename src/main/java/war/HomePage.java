@@ -5,13 +5,18 @@ import org.apache.wicket.datetime.StyleDateConverter;
 import org.apache.wicket.datetime.markup.html.form.DateTextField;
 import org.apache.wicket.extensions.yui.calendar.DatePicker;
 import org.apache.wicket.markup.html.WebPage;
+import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.*;
+import org.apache.wicket.markup.html.link.Link;
+import org.apache.wicket.markup.html.list.ListItem;
+import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.model.PropertyModel;
 import org.apache.wicket.util.time.TimeFrame;
 import war.domain.Hotel;
 import war.domain.HotelRepository;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
@@ -35,6 +40,8 @@ public class HomePage extends WebPage {
     private DateTextField tfDateIn;
     private DateTextField tfDateOut;
     private Button submit;
+    private Label hotelName;
+
 
     private Date dateIn = new Date();
     private Date dateOut = new Date();
@@ -56,17 +63,26 @@ public class HomePage extends WebPage {
         selectchildren = new DropDownChoice("children",new PropertyModel<Integer>(this,"zero"),listZero );
         searchLabel = new TextField("search");
         btnSearch = new Button("btnSearch");
-        submit = new Button("button") {
-            @Override
-            public void onSubmit() {
-                String value = (String) name.getModelObject();
-                String value2 = (String) sname.getModelObject();
+        submit = new Button("button");
+//            @Override
+//            public void onSubmit() {
+//                String value = (String) name.getModelObject();
+//                String value2 = (String) sname.getModelObject();
 //                label.setObject(value);
 //                label2.setModelObject(value2);
 //                name.setModelObject("");
 //                sname.setModelObject("");
-            }
-        };
+//            }
+//        };
+
+//        Button registration = new Button("registration"){
+//            private static final long serialVersionUID = 1L;
+//            public String  (){
+//                setResponsePage(new RegistrationPage());
+//                return getValue();
+//            }
+//        };
+//        form.add(registration);
 
         tfDateIn = new DateTextField("dateIn", new PropertyModel<Date>(
                 this, "dateIn"), new StyleDateConverter("S-", true));
@@ -82,7 +98,46 @@ public class HomePage extends WebPage {
         datePicker2.setAutoHide(true);
         tfDateOut.add(datePicker2);
 
-        form.add(name);
+        form.add(new Link("link") {
+            public void onClick() {
+                setResponsePage(new RegistrationPage());
+            }
+        });
+
+
+
+        List<Hotel> hotels = hotelRepository.loadHotels();
+        Hotel hotel = hotels.get(0);
+
+        form.add(new Label("hotelname", new Model<String>(hotel.getName())));
+        form.add(new Label("country", new Model<String>(hotel.getCountry())));
+        form.add(new Label("city", new Model<String>(hotel.getCity())));
+        form.add(new Label("stars", new Model<Integer>(hotel.getStars())));
+
+//        name.setModel(new Model<String>(hotel.getName()));
+
+//        form.add(new Label("hotelname", new Model<String>(hotel.getName())));
+//        form.add(new Label("country", new Model<String>(hotel.getCountry())));
+//        form.add(new Label("city", new Model<String>(hotel.getCity())));
+//        form.add(new Label("stars", new Model<Integer>(hotel.getStars())));
+//        form.add(new Label("price", new Model<String>(hotel.getP())));
+//         List list = new ArrayList();
+
+//         ListView listView = new ListView("list", list) {
+//            @Override
+//            protected void populateItem(ListItem item) {
+//                Hotel hotels =  (Hotel)item.getModelObject();
+//                item.add(new Label("hotelname", new Model<String>(hotels.getName())));
+//                item.add(new Label("country", new Model<String>(hotels.getCountry())));
+//                item.add(new Label("city", new Model<String>(hotels.getCity())));
+//                item.add(new Label("stars", new Model<Integer>(hotels.getStars())));
+//
+//            }
+//        };
+//        add(listView);
+
+
+         form.add(name);
         form.add(sname);
         form.add(selectrooms);
         form.add(selectadults);
@@ -95,9 +150,6 @@ public class HomePage extends WebPage {
         form.add(btnSearch);
 
 
-        List<Hotel> hotels = hotelRepository.loadHotels();
-        Hotel hotel = hotels.get(0);
 
-        name.setModel(new Model<String>(hotel.getName()));
     }
 }

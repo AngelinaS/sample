@@ -16,14 +16,14 @@ import java.util.List;
     @GeneratedValue(generator="increment")
     @GenericGenerator(name="increment", strategy = "increment")
     private int userID;
-    private String logIn;
     private String name;
     private String surname;
     private String password;
-    private Date birthdate;
     private String email;
+    private String login;
     @OneToMany(mappedBy = "user")
     private List<Booking> bookings;
+
 
     public int getUserID() {
         return userID;
@@ -31,14 +31,6 @@ import java.util.List;
 
     public void setUserID(int userID) {
         this.userID = userID;
-    }
-
-    public String getLogIn() {
-        return logIn;
-    }
-
-    public void setLogIn(String logIn) {
-        this.logIn = logIn;
     }
 
     public String getName() {
@@ -65,14 +57,6 @@ import java.util.List;
         this.password = password;
     }
 
-    public Date getBirthdate() {
-        return birthdate;
-    }
-
-    public void setBirthdate(Date birthdate) {
-        this.birthdate = birthdate;
-    }
-
     public String getEmail() {
         return email;
     }
@@ -89,4 +73,16 @@ import java.util.List;
         this.bookings = bookings;
     }
 
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    public void save()
+    {
+
+    }
 }
