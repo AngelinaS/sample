@@ -15,7 +15,6 @@ import org.apache.wicket.model.PropertyModel;
 import org.apache.wicket.util.time.TimeFrame;
 import war.domain.Hotel;
 import war.domain.HotelRepository;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
@@ -31,17 +30,11 @@ public class HomePage extends WebPage {
 
     private TextField searchLabel;
     private Button btnSearch;
-    private TextField name;
-    private TextField sname;
-    private TimeFrame time;
     private DropDownChoice selectrooms;
     private DropDownChoice selectadults;
     private DropDownChoice selectchildren;
     private DateTextField tfDateIn;
     private DateTextField tfDateOut;
-    private Button submit;
-    private Label hotelName;
-
 
     private Date dateIn = new Date();
     private Date dateOut = new Date();
@@ -56,33 +49,13 @@ public class HomePage extends WebPage {
     public HomePage() {
 
         Form form = new Form("form");
-        name = new TextField<String>("name", new Model(""));
-        sname = new PasswordTextField("sname", new Model(""));
+
         selectrooms = new DropDownChoice("rooms", new PropertyModel<Integer> (this, "one"), listFive);
         selectadults = new DropDownChoice("adults", new PropertyModel<Integer>(this, "one"),listFive);
         selectchildren = new DropDownChoice("children",new PropertyModel<Integer>(this,"zero"),listZero );
+
         searchLabel = new TextField("search");
         btnSearch = new Button("btnSearch");
-        submit = new Button("button");
-//            @Override
-//            public void onSubmit() {
-//                String value = (String) name.getModelObject();
-//                String value2 = (String) sname.getModelObject();
-//                label.setObject(value);
-//                label2.setModelObject(value2);
-//                name.setModelObject("");
-//                sname.setModelObject("");
-//            }
-//        };
-
-//        Button registration = new Button("registration"){
-//            private static final long serialVersionUID = 1L;
-//            public String  (){
-//                setResponsePage(new RegistrationPage());
-//                return getValue();
-//            }
-//        };
-//        form.add(registration);
 
         tfDateIn = new DateTextField("dateIn", new PropertyModel<Date>(
                 this, "dateIn"), new StyleDateConverter("S-", true));
@@ -104,6 +77,11 @@ public class HomePage extends WebPage {
             }
         });
 
+        form.add(new Link("linkreg") {
+            public void onClick() {
+                setResponsePage(new LoginPage());
+            }
+        });
 
 
         List<Hotel> hotels = hotelRepository.loadHotels();
@@ -113,7 +91,11 @@ public class HomePage extends WebPage {
         form.add(new Label("country", new Model<String>(hotel.getCountry())));
         form.add(new Label("city", new Model<String>(hotel.getCity())));
         form.add(new Label("stars", new Model<Integer>(hotel.getStars())));
-
+        form.add(new Link("more") {
+            public void onClick() {
+                setResponsePage(new HotelPage());
+            }
+        });
 //        name.setModel(new Model<String>(hotel.getName()));
 
 //        form.add(new Label("hotelname", new Model<String>(hotel.getName())));
@@ -136,14 +118,10 @@ public class HomePage extends WebPage {
 //        };
 //        add(listView);
 
-
-         form.add(name);
-        form.add(sname);
+        add(form);
         form.add(selectrooms);
         form.add(selectadults);
         form.add(selectchildren);
-        form.add(submit);
-        add(form);
         form.add(searchLabel);
         form.add(tfDateIn);
         form.add(tfDateOut );

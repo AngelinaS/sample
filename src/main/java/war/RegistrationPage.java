@@ -24,6 +24,8 @@ public class RegistrationPage extends WebPage {
     private PasswordTextField password2;
     private Button registration;
     private EmailTextField email;
+    private Label infologin;
+    private Label infopass;
 
     public RegistrationPage () {
         Form form = new Form ("form");
@@ -33,6 +35,10 @@ public class RegistrationPage extends WebPage {
         password1 = new PasswordTextField("pass1", new Model(""));
         password2 = new PasswordTextField("pass2", new Model(""));
         email = new EmailTextField("email", new Model<String>(""));
+        infologin = new Label("info", "Login is incorrect");
+        infologin.setVisible(false);
+        infopass = new Label("info2","Password is incorrect");
+        infopass.setVisible(false);
         registration = new Button("registration")
         {
             @Override
@@ -51,36 +57,44 @@ public class RegistrationPage extends WebPage {
                 password2.setModelObject(passwordvalue2);
                 email.setModelObject(emailvalue);
                 User loguser = userRepository.loadUserByLogin(loginvalue);
+                infologin.setVisible(false);
+                infopass.setVisible(false);
                 if (loguser == null){
+                    if(loginvalue.length()>6)
+                        {
                        if(passwordvalue.length()>6)
                         {
                             if (passwordvalue.equals(passwordvalue2))
                             {
-                            User user = userRepository.addUser(loginvalue, namevalue, surnamevalue, passwordvalue, emailvalue);
+                                User user = userRepository.addUser(loginvalue, namevalue, surnamevalue, passwordvalue, emailvalue);
+
+                                setResponsePage(new HomePage());
                             }
                             else
                             {
-                            JFrame frame = new JFrame();
-                            JOptionPane.showMessageDialog(frame, "incorrect password", "Error", JOptionPane.ERROR_MESSAGE);
+                            infopass.setVisible(true);
                             }
                         }
                         else
                         {
-                            JFrame frame = new JFrame();
-                            JOptionPane.showMessageDialog(frame, "password is very small", "Error", JOptionPane.ERROR_MESSAGE);
+                            infopass.setVisible(true);
                         }
-                }
-                else {
-                    JFrame frame = new JFrame();
-                    JOptionPane.showMessageDialog(frame, "incorrect user login", "Error", JOptionPane.ERROR_MESSAGE);
-                }
+                    }
+                    else
+                    {
+                        infologin.setVisible(true);
+                    }
 
-
+                }
+                else
+                {
+                    infologin.setVisible(true);
+                }
             }
         };
-
-
         add(form);
+        form.add(infologin);
+        form.add(infopass);
         form.add(name);
         form.add(surname);
         form.add(login);
@@ -88,10 +102,5 @@ public class RegistrationPage extends WebPage {
         form.add(password2);
         form.add(registration);
         form.add(email);
-
-
     }
-
-
-
 }
