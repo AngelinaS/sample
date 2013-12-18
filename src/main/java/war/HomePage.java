@@ -1,6 +1,7 @@
 package war;
 
 import com.google.inject.Inject;
+import org.apache.wicket.Session;
 import org.apache.wicket.datetime.StyleDateConverter;
 import org.apache.wicket.datetime.markup.html.form.DateTextField;
 import org.apache.wicket.extensions.yui.calendar.DatePicker;
@@ -28,7 +29,7 @@ public class HomePage extends WebPage {
     @Inject
     HotelRepository hotelRepository;
 
-    private TextField searchLabel;
+    private TextField search;
     private Button btnSearch;
     private DropDownChoice selectrooms;
     private DropDownChoice selectadults;
@@ -50,11 +51,12 @@ public class HomePage extends WebPage {
 
         Form form = new Form("form");
 
+        ((MySession) Session.get()).setMyObject(null);
+
         selectrooms = new DropDownChoice("rooms", new PropertyModel<Integer> (this, "one"), listFive);
         selectadults = new DropDownChoice("adults", new PropertyModel<Integer>(this, "one"),listFive);
         selectchildren = new DropDownChoice("children",new PropertyModel<Integer>(this,"zero"),listZero );
-
-        searchLabel = new TextField("search");
+        search = new TextField("search", new Model(""));
         btnSearch = new Button("btnSearch");
 
         tfDateIn = new DateTextField("dateIn", new PropertyModel<Date>(
@@ -76,17 +78,13 @@ public class HomePage extends WebPage {
                 setResponsePage(new RegistrationPage());
             }
         });
-
         form.add(new Link("linkreg") {
             public void onClick() {
                 setResponsePage(new LoginPage());
             }
         });
-
-
         List<Hotel> hotels = hotelRepository.loadHotels();
         Hotel hotel = hotels.get(0);
-
         form.add(new Label("hotelname", new Model<String>(hotel.getName())));
         form.add(new Label("country", new Model<String>(hotel.getCountry())));
         form.add(new Label("city", new Model<String>(hotel.getCity())));
@@ -118,16 +116,13 @@ public class HomePage extends WebPage {
 //        };
 //        add(listView);
 
-        add(form);
         form.add(selectrooms);
         form.add(selectadults);
         form.add(selectchildren);
-        form.add(searchLabel);
+        form.add(search);
         form.add(tfDateIn);
         form.add(tfDateOut );
         form.add(btnSearch);
-
-
-
+        add(form);
     }
 }

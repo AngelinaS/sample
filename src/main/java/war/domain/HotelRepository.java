@@ -3,6 +3,7 @@ package war.domain;
 import war.WicketApplication;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import java.util.List;
 
 public class HotelRepository {
@@ -16,8 +17,13 @@ public class HotelRepository {
     }
 
     public List<Hotel> loadHotels() {
-        return entityManager.createQuery("select h from Hotel h order by h.name", Hotel.class)
-                .getResultList();
+        List<Hotel> result = null;
+        try{
+         result = entityManager.createQuery("select h from Hotel h order by h.name", Hotel.class)
+                 .getResultList();
+        }catch (NoResultException nre){
+        }
+        return result;
     }
 
 //    return entityManager.createQuery("select h from Hotel h where h.bookings.date = :date", Hotel.class)

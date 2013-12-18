@@ -1,6 +1,7 @@
 package war;
 
 import com.google.inject.Inject;
+import org.apache.wicket.Session;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.Button;
@@ -12,6 +13,8 @@ import org.apache.wicket.model.Model;
 import war.domain.User;
 import war.domain.UserRepository;
 
+
+
 public class LoginPage extends WebPage {
     @Inject
     UserRepository userRepository;
@@ -21,6 +24,7 @@ public class LoginPage extends WebPage {
     private Label info;
     private Button login;
     private String password;
+
 
 
     public LoginPage (){
@@ -43,7 +47,14 @@ public class LoginPage extends WebPage {
                 if(loguser != null) {
                     password = loguser.getPassword();
                     if(passvalue.equals(password)){
+                        ((MySession)Session.get()).setMyObject(namevalue);
+                        if(namevalue.equals("admin")){
+                         setResponsePage(new AdminPage());
+                        }
+                        else {
                          setResponsePage(new UserPage());
+                        }
+
                     }
                      else {
                         info.setVisible(true);
