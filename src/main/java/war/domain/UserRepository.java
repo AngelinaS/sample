@@ -24,7 +24,16 @@ public class UserRepository {
         return result;
     }
 
-
+    public User changeData(String name, String surname, String email , Integer id){
+        User user = entityManager.find(User.class, id);
+        entityManager.getTransaction().begin();
+        user.setName(name);
+        user.setSurname(surname);
+        user.setEmail(email);
+        entityManager.getTransaction().commit();
+        entityManager.refresh(user);
+        return user;
+    }
 
     public User addUser (String login, String name, String surname, String password, String email ){
         entityManager.getTransaction().begin();

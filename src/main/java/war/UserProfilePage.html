@@ -71,6 +71,11 @@
         border-style: solid;
         border-color: white;
     }
+    .info
+    {
+        font-family: monospace;
+        color: #ff090f;
+    }
 </style>
 <body>
 <form wicket:id="form">
@@ -78,9 +83,9 @@
         <tr></tr>
         <tr valign="middle">
             <td width="1%" ></td>
-            <td ><a href="HomePage.html"><h1>Booking</h1></a></td>
+            <td ><a href="HomePage.html" wicket:id="home"><h1>Booking</h1></a></td>
             <td align="right">
-                <a wicket:id="login" href="HomePage.html" >Log out</a>
+                <a wicket:id="logout" href="HomePage.html" >Log out</a>
             </td>
             <td></td>
         </tr>
@@ -93,59 +98,73 @@
             </td>
             <td width="230px">
             </td>
+
             <td width="160px">
+                <span wicket:id="info" class="info">Information</span>
             </td>
         </tr>
         <tr>
             <td align="right">
-                <p class="p1">Name</p>
+                <p class="p1"><span wicket:id="text1" class="p1">Text1</span></p>
+                <p class="p1"><span wicket:id="passtext1" class="p1">Text</span></p>
+                <p class="p1"><span wicket:id="deletetext" class="p1">Text</span></p>
             </td>
             <td>
-                <p class="text"> <span wicket:id="name">Name</span></p>
+                 <input wicket:id="name" type="text" class="text"></input>
+                <input wicket:id="oldpass" type="password" class="text" formnovalidate></input>
             </td>
             <td> </td>
         </tr>
         <tr>
             <td align="right">
-                <p class="p1">Surname</p>
+                <p class="p1"><span wicket:id="text2" class="p1">Text2</span></p>
+                <p class="p1"><span wicket:id="passtext2" class="p1">Text</span></p>
             </td>
             <td>
-                <p class="text"> <span wicket:id="surname">Surname</span></p>
+                <input wicket:id="surname" type="text" class="text"></input>
+                <input wicket:id="newpass1" type="password" class="text" formnovalidate></input>
             </td>
             <td>  </td>
         </tr>
         <tr>
             <td align="right">
-                <p class="p1">Birthday</p>
+                <p class="p1"><span wicket:id="text3" class="p1">Text3</span></p>
+                <p class="p1"><span wicket:id="passtext3" class="p1">Text</span></p>
             </td>
             <td>
-                <p class="text"> <span wicket:id="birthday">Birthday</span></p>
+                <input wicket:id="email" type="text" class="text"></input>
+                <input wicket:id="newpass2" type="password" class="text" formnovalidate></input>
             </td>
             <td> </td>
         </tr>
         <tr>
-            <td align="right">
-                <p class="p1">E-mail</p>
-            </td>
-            <td>
-                <p class="text"> <span wicket:id="email">E-mail</span></p>
-            </td>
-            <td> </td>
-        </tr>
-        <tr>
-
         </tr>
         <tr>
             <td>
-                <input wicket:id="changeData" type="button" value="Change data" id="submit" />
+                <input wicket:id="changeData" type="submit" value="Change data" id="submit" />
             </td>
             <td>
-                <input wicket:id="changePass" type="button" value="Change password" id="submit" />
+                <input wicket:id="changePass" type="submit" value="Change password" id="submit" />
             </td>
             <td >
-                <input wicket:id="delete" type="button" value="Delete profile" id="submit" />
+                <input wicket:id="delete" type="submit" value="Delete profile" id="submit" />
             </td>
         </tr>
+
+        <tr>
+            <td>
+
+            </td>
+            <td>
+                <input wicket:id="savepass" type="submit" value="Save password" id="submit" />
+                <input wicket:id="deleteaccount" type="submit" value="Delete" id="submit" />
+                <input wicket:id="savedata" type="submit" value="Save data" id="submit" />
+            </td>
+            <td >
+                <input wicket:id="cancelbtn" type="submit" value="Cancel" id="submit"/>
+            </td>
+        </tr>
+
     </table>
 </form>
 </body>
