@@ -35,6 +35,23 @@ public class UserRepository {
         return user;
     }
 
+    public User changePass (Integer id, String password){
+        User user = entityManager.find(User.class, id);
+        entityManager.getTransaction().begin();
+        user.setPassword(password);
+        entityManager.getTransaction().commit();
+        entityManager.refresh(user);
+        return user;
+    }
+
+    public User deleteAccount(Integer id){
+        User user = entityManager.find(User.class, id);
+        entityManager.getTransaction().begin();
+        entityManager.remove(user);
+        entityManager.getTransaction().commit();
+        return  null;
+    }
+
     public User addUser (String login, String name, String surname, String password, String email ){
         entityManager.getTransaction().begin();
         User currentUser = new User();

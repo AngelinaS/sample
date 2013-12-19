@@ -42,12 +42,14 @@ public class UserProfilePage extends WebPage {
     private Label info;
     private Label deletetext;
     private Integer userid;
+    private String pass;
 
     public UserProfilePage(){
         Form form = new Form("form");
 
         login = ((MySession) Session.get()).getMyObject().toString();
         User loguser = userRepository.loadUserByLogin(login);
+        pass = loguser.getPassword().toString();
         userid = loguser.getUserID();
         userlogin = new Label("userLogin", new Model(login));
         name = new TextField("name", new Model(loguser.getName()));
@@ -75,6 +77,9 @@ public class UserProfilePage extends WebPage {
         passtext1.setVisible(false);
         passtext2.setVisible(false);
         passtext3.setVisible(false);
+        if (login.equals("admin")){
+            delete.setVisible(false);
+        }
         changedata = new Button("changeData"){
             @Override
             public void onSubmit (){
@@ -95,7 +100,6 @@ public class UserProfilePage extends WebPage {
                 String namevalue = (String) name.getModelObject();
                 String suranamevalue = (String) surname.getModelObject();
                 String emailvalue = (String) email.getModelObject();
-                namevalue = namevalue.toLowerCase();
                 name.setModelObject(namevalue);
                 surname.setModelObject(suranamevalue);
                 email.setModelObject(emailvalue);
@@ -108,7 +112,12 @@ public class UserProfilePage extends WebPage {
                 savedata.setVisible(false);
                 changedata.setVisible(true);
                 changepass.setVisible(true);
-                delete.setVisible(true);
+                if (login.equals("admin")){
+                    delete.setVisible(false);
+                }
+                else{
+                    delete.setVisible(true);
+                }
             }
         };
         savedata.setVisible(false);
@@ -138,7 +147,42 @@ public class UserProfilePage extends WebPage {
         savepass = new Button("savepass"){
             @Override
             public void onSubmit (){
-
+                String oldpassvalue = (String) oldpass.getModelObject();
+                String newpass1value = (String) newpass1.getModelObject();
+                String newpass2value = (String) newpass2.getModelObject();
+                oldpass.setModelObject(oldpassvalue);
+                newpass1.setModelObject(newpass1value);
+                newpass2.setModelObject(newpass2value);
+                if (oldpassvalue.equals(pass)){
+                    if(newpass1value.length()>6){
+                        if(newpass1value.equals(newpass2value)){
+                            User user = userRepository.changePass(userid,newpass2value);
+                            passtext1.setVisible(false);
+                            passtext2.setVisible(false);
+                            passtext3.setVisible(false);
+                            oldpass.setVisible(false);
+                            newpass1.setVisible(false);
+                            newpass2.setVisible(false);
+                            info.setVisible(false);
+                            savepass.setVisible(false);
+                            cancel.setVisible(false);
+                            if (login.equals("admin")){
+                                delete.setVisible(false);
+                            }
+                            else{
+                                delete.setVisible(true);
+                            }
+                            text1.setVisible(true);
+                            text2.setVisible(true);
+                            text3.setVisible(true);
+                            changedata.setVisible(true);
+                            changepass.setVisible(true);
+                            name.setVisible(true);
+                            surname.setVisible(true);
+                            email.setVisible(true);
+                        }
+                    }
+                }
             }
         };
         savepass.setVisible(false);
@@ -164,7 +208,13 @@ public class UserProfilePage extends WebPage {
         deleteaccount = new Button("deleteaccount"){
             @Override
             public void onSubmit (){
-
+                String enterpass = (String) oldpass.getModelObject();
+                oldpass.setModelObject(enterpass);
+                if(enterpass.equals(pass)){
+                    User user = userRepository.deleteAccount(userid);
+                    ((MySession)Session.get()).setMyObject(null);
+                    setResponsePage(new HomePage());
+                }
             }
         };
         deleteaccount.setVisible(false);
@@ -189,12 +239,17 @@ public class UserProfilePage extends WebPage {
                 text3.setVisible(true);
                 changedata.setVisible(true);
                 changepass.setVisible(true);
-                delete.setVisible(true);
                 name.setVisible(true);
                 surname.setVisible(true);
                 email.setVisible(true);
                 savedata.setVisible(false);
                 info.setVisible(false);
+                if (login.equals("admin")){
+                    delete.setVisible(false);
+                }
+                else{
+                    delete.setVisible(true);
+                }
             }
         };
         cancel.setVisible(false);
