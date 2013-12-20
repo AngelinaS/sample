@@ -176,8 +176,10 @@
                 <p class="p1">Parking</p>
             </td>
             <td>
-                <p class="text"> Yes <input wicket:id="parking" type="radio" value="yes" name="radio" required>
-                    No <input wicket:id="parking" type="radio" value="no" name="radio"></p>
+                <wicket:container wicket:id="group">
+                <p class="text"> Yes <input wicket:id="parking1" type="radio" value="1" name="radio" required>
+                    No <input wicket:id="parking2" type="radio" value="0" name="radio"></p>
+                </wicket:container>
             </td>
             <td> </td>
         </tr>
@@ -186,8 +188,10 @@
                 <p class="p1">Wifi</p>
             </td>
             <td>
-                <p class="text"> Yes <input wicket:id="wifi" type="radio" value="yes" name="radio2" required>
-                    No <input wicket:id="wifi" type="radio" value="no" name="radio2"></p>
+                <wicket:container wicket:id="group2">
+                <p class="text"> Yes <input wicket:id="wifi1" type="radio" value="1" name="radio2" required>
+                    No <input wicket:id="wifi2" type="radio" value="0" name="radio2"></p>
+                </wicket:container>
             </td>
             <td> </td>
         </tr>
@@ -196,8 +200,10 @@
                 <p class="p1">Pets</p>
             </td>
             <td>
-                <p class="text"> Yes <input wicket:id="pets" type="radio" value="yes" name="radio3" required>
-                    No <input wicket:id="pets" type="radio" value="no" name="radio3"></p>
+                <wicket:container wicket:id="group3">
+                <p class="text"> Yes <input wicket:id="pets1" type="radio" value="1" name="radio3" required>
+                    No <input wicket:id="pets2" type="radio" value="0" name="radio3"></p>
+                </wicket:container>
             </td>
             <td> </td>
         </tr>
@@ -238,7 +244,14 @@
             </td>
             <td> </td>
         </tr>
-        <tr wicket:id="list">
+        <tr>
+            <td></td>
+            <td align="center">
+                <input wicket:id="create" type="submit" value="CREATE" id="submit" />
+            </td>
+            <td > </td>
+        </tr>
+        <tr >
             <td align="right">
                 <p class="p1">Hotel rooms</p>
             </td>
@@ -249,7 +262,7 @@
                            <p class="text">Room Type </p>
                         </td>
                         <td width="450px">
-                            <input wicket:id="roomType" type="text"  size="45px" required/>
+                            <input wicket:id="roomType" type="text"  size="45px" />
                         </td>
                     </tr>
                     <tr>
@@ -257,7 +270,7 @@
                             <p class="text">Quantity rooms in hotel </p>
                         </td>
                         <td >
-                            <input wicket:id="roomsQuant" type="text"  size="45px" required/>
+                            <input wicket:id="roomsQuant" type="text"  size="45px" />
                         </td>
                     </tr>
                     <tr>
@@ -265,7 +278,7 @@
                             <p class="text">Price </p>
                         </td>
                         <td >
-                            <input wicket:id="price" type="text"  size="45px" required/>
+                            <input wicket:id="price" type="text"  size="45px" />
                         </td>
                     </tr>
                     <tr>
@@ -273,7 +286,7 @@
                             <p class="text">Rooms in room </p>
                         </td>
                         <td >
-                            <input wicket:id="rooms" type="text"  size="45px" required/>
+                            <input wicket:id="rooms" type="text"  size="45px" />
                         </td>
                     </tr>
                     <tr>
@@ -281,7 +294,7 @@
                             <p class="text">For one person beds </p>
                         </td>
                         <td >
-                            <input wicket:id="onePerBedQuant" type="text"  size="45px" required/>
+                            <input wicket:id="onePerBedQuant" type="text"  size="45px" />
                         </td>
                     </tr>
                     <tr>
@@ -289,7 +302,7 @@
                             <p class="text">For two persons beds </p>
                         </td>
                         <td >
-                            <input wicket:id="twoPerBedQuant" type="text"  size="45px" required/>
+                            <input wicket:id="twoPerBedQuant" type="text"  size="45px" />
                         </td>
                     </tr>
                     <tr>
@@ -297,20 +310,14 @@
                             <p class="text"></p>
                         </td>
                         <td >
-                            <input wicket:id="more" type="button"  id="submit" value="More types"/>
+                            <input wicket:id="more" type="submit"  id="submit" value="More types"/>
                         </td>
                     </tr>
                 </table>
             </td>
             <td></td>
         </tr>
-        <tr>
-            <td></td>
-            <td align="center">
-                <input wicket:id="submit" type="submit" value="CREATE" id="submit" />
-            </td>
-            <td > </td>
-        </tr>
+
     </table>
 </form>
 </body>

@@ -19,6 +19,23 @@
         font-family: sans-serif;
         color: #00008b;
     }
+    A.head:link
+    {
+        color: #c9ddff;
+        text-decoration: none;
+    }
+    A.head:active
+    {
+        color:#c9ddff
+    }
+    A.head:visited
+    {
+        color:#c9ddff
+    }
+    A.head:hover
+    {
+        text-decoration: none;
+    }
     p.p1
     {
         font-family: sans-serif;
@@ -72,48 +89,6 @@
     {
         border-color:#FFBC4C;
     }
-    p.name
-    {
-        font-family: sans-serif;
-        color: #4267d6;
-        font-size: x-large;
-
-    }
-    p.hotel
-    {
-        font-family: sans-serif;
-        color: #4267d6;
-        font-size: large;
-
-    }
-    p.price
-    {
-        font-family: sans-serif;
-        color: #4267d6;
-        font-size: x-large;
-    }
-    p.user
-    {
-        color: #f4f0ff;
-        font-family: 'sans-serif';
-    }
-    A:link
-    {
-        color: #c9ddff;
-        text-decoration: none;
-    }
-    A.user:active
-    {
-        color:#c9ddff
-    }
-    A.user:visited
-    {
-        color:#c9ddff
-    }
-    A.user:hover
-    {
-        text-decoration: none;
-    }
     pre.name
     {
         font-family: sans-serif;
@@ -127,6 +102,17 @@
         color: #4267d6;
         font-size: large;
 
+    }
+    p.price
+    {
+        font-family: sans-serif;
+        color: #4267d6;
+        font-size: x-large;
+    }
+    .info
+    {
+        font-family: monospace;
+        color: #ff090f;
     }
     A.hotel:link
     {
@@ -150,19 +136,21 @@
     {
         text-decoration: underline;
     }
+
 </style>
 <body>
 <form wicket:id="form">
+
     <table frame="below" width="100%" height="70px" bgcolor=0E0E87 bordercolor=0012FF >
         <tr></tr>
         <tr valign="middle">
             <td width="1%" ></td>
             <td width="83%"><h1>Booking</h1> </td>
             <td align="right" width="7%">
-                <a wicket:id="login" href="UserProfilePage.html"  class="user"><span wicket:id="userpage">User name</span></a>
+                <a wicket:id="login" href="UserProfilePage.html"  class="head"><span wicket:id="userpage">User name</span></a>
             </td>
             <td width="7%" align="right">
-                <a wicket:id="logout" href="HomePage.html" class="user">Logout </a>
+                <a wicket:id="logout" href="HomePage.html" class="head">Logout </a>
             </td>
             <td width="2%"></td>
         </tr>
@@ -172,8 +160,10 @@
         <tr>
             <td width="1%"></td>
             <td width="6%">
+
             </td>
             <td  width="9%">
+
             </td>
             <td width="2%"></td>
             <td width="1%" bgcolor="FFBC4C" rowspan="3"></td>
@@ -192,8 +182,10 @@
         <tr>
             <td></td>
             <td>
+
             </td>
             <td>
+
             </td>
             <td></td>
             <td bgcolor="FFBC4C">
@@ -211,6 +203,7 @@
             <td></td>
             <td width="5%"></td>
             <td width="10%" align="right">
+
             </td>
             <td></td>
             <td bgcolor="FFBC4C" colspan="3">
@@ -218,7 +211,9 @@
             <td></td>
         </tr>
         <tr>
-            <td colspan="4"> </td>
+            <td colspan="4">
+
+            </td>
             <td bgcolor="FFBC4C">
             </td>
             <td bgcolor="FFBC4C">
@@ -234,17 +229,17 @@
                 <pre>  </pre>
             </td>
             <td bgcolor="FFBC4C" align="right">
-                <input wicket:id="btnSearch"  type="submit"  value="Search" id="submit" />
+                <input wicket:id="btnSearch"  type="button"  value="Search" id="submit" />
             </td>
             <td bgcolor="FFBC4C">
             </td>
         </tr>
     </table>
     <p></p>
-    <table  width="100%"  cellspacing="0" >
-        <tr >
-            <table  width="100%"  cellspacing="0" >
-                <tr>
+    <table>
+        <tr>
+            <table  width="100%"  cellspacing="0">
+                <tr wicket:id="tableHotelRow">
                     <td width="19%">
                     </td>
 
@@ -266,6 +261,7 @@
             </table>
         </tr>
     </table>
+
 </form>
 </body>
 </html>

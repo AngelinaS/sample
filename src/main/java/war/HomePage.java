@@ -51,7 +51,7 @@ public class HomePage extends WebPage {
 
         Form form = new Form("form");
 
-        ((MySession) Session.get()).setMyObject(null);
+        ((MySession) Session.get()).setMyObject("null");
 
         selectrooms = new DropDownChoice("rooms", new PropertyModel<Integer> (this, "one"), listFive);
         selectadults = new DropDownChoice("adults", new PropertyModel<Integer>(this, "one"),listFive);
@@ -83,38 +83,24 @@ public class HomePage extends WebPage {
                 setResponsePage(new LoginPage());
             }
         });
-        List<Hotel> hotels = hotelRepository.loadHotels();
-        Hotel hotel = hotels.get(0);
-        form.add(new Label("hotelname", new Model<String>(hotel.getName())));
-        form.add(new Label("country", new Model<String>(hotel.getCountry())));
-        form.add(new Label("city", new Model<String>(hotel.getCity())));
-        form.add(new Label("stars", new Model<Integer>(hotel.getStars())));
-        form.add(new Link("more") {
-            public void onClick() {
-                setResponsePage(new HotelPage());
+
+        int hotelLimits = 3;
+        final List<Hotel> hotels = hotelRepository.loadHotels(hotelLimits);
+        form.add(new ListView<Hotel>("tableHotelRow", hotels) {
+            @Override
+            protected void populateItem(final ListItem<Hotel> item) {
+                final Hotel hotel = item.getModelObject();
+                item.add(new Label("hotelname", new Model<String>(hotel.getName())));
+                item.add(new Label("country", new Model<String>(hotel.getCountry())));
+                item.add(new Label("city", new Model<String>(hotel.getCity())));
+                item.add(new Label("stars", new Model<Integer>(hotel.getStars())));
+                item.add(new Link("more") {
+                    public void onClick() {
+                        setResponsePage(new HotelPage(hotels.get(item.getIndex()).getHotelId()));
+                    }
+                });
             }
         });
-//        name.setModel(new Model<String>(hotel.getName()));
-
-//        form.add(new Label("hotelname", new Model<String>(hotel.getName())));
-//        form.add(new Label("country", new Model<String>(hotel.getCountry())));
-//        form.add(new Label("city", new Model<String>(hotel.getCity())));
-//        form.add(new Label("stars", new Model<Integer>(hotel.getStars())));
-//        form.add(new Label("price", new Model<String>(hotel.getP())));
-//         List list = new ArrayList();
-
-//         ListView listView = new ListView("list", list) {
-//            @Override
-//            protected void populateItem(ListItem item) {
-//                Hotel hotels =  (Hotel)item.getModelObject();
-//                item.add(new Label("hotelname", new Model<String>(hotels.getName())));
-//                item.add(new Label("country", new Model<String>(hotels.getCountry())));
-//                item.add(new Label("city", new Model<String>(hotels.getCity())));
-//                item.add(new Label("stars", new Model<Integer>(hotels.getStars())));
-//
-//            }
-//        };
-//        add(listView);
 
         form.add(selectrooms);
         form.add(selectadults);

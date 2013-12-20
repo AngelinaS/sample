@@ -82,9 +82,15 @@
         <tr></tr>
         <tr valign="middle">
             <td width="1%" ></td>
-            <td ><a href="HomePage.html"><h1>Booking</h1></a></td>
+            <td ><a href="HomePage.html" wicket:id="home"><h1>Booking</h1></a></td>
             <td align="right">
-                <a wicket:id="login" href="UserProfilePage.html" >User name</a>
+                <a wicket:id="login" href="UserProfilePage.html"  class="user"><span wicket:id="userpage">User name</span></a>
+            </td>
+            <td align="right" width="7%">
+                <a wicket:id="linkreg" href="LoginPage.html" class="head">  Login </a>
+            </td>
+            <td align="right"  width="7%">
+                <a wicket:id="link" href="RegistrationPage.html" class="head"> Registration </a>
             </td>
             <td></td>
         </tr>
@@ -98,7 +104,7 @@
             <td width="550px">
             </td>
             <td width="200px" rowspan="6">
-                <input type="image" border="2px" class="border" />
+
             </td>
         </tr>
         <tr>
@@ -142,7 +148,7 @@
                 <p class="p1">Rooms</p>
             </td>
             <td>
-                <p class="text"> <span wicket:id="roms">Rooms</span></p>
+                <p class="text"> <span wicket:id="rooms">Rooms</span></p>
             </td>
             <td> </td>
         </tr>
@@ -170,7 +176,7 @@
                 <p class="p1">Activities</p>
             </td>
             <td>
-                <p class="text"> <span wicket:id="tel">Activities</span></p>
+                <p class="text"> <span wicket:id="activities">Activities</span></p>
             </td>
             <td> </td>
         </tr>
@@ -201,15 +207,7 @@
             </td>
             <td> </td>
         </tr>
-        <tr>
-            <td align="right">
-                <p class="p1">Wifi</p>
-            </td>
-            <td>
-                <p class="text"> <span wicket:id="wifi">Wifi</span></p>
-            </td>
-            <td> </td>
-        </tr>
+
         <tr>
             <td align="right">
                 <p class="p1">Rooms Types and prices</p>
@@ -218,7 +216,7 @@
                 <table>
                     <tr>
                         <td width="450"><p class="text"> <span wicket:id="roomTypes">Rooms Types</span></p></td>
-                        <td width="100"><p class="text"> <span wicket:id="Price">Price</span></p> </td>
+                        <td width="100"><p class="text"> <span wicket:id="price">Price</span></p> </td>
                     </tr>
 
                 </table>
@@ -237,10 +235,10 @@
         </tr>
         <tr>
             <td align="right">
-                <p class="p1">Wifi</p>
+                <p class="p1">Telephone</p>
             </td>
             <td>
-                <p class="text"> <span wicket:id="wifi">Wifi</span></p>
+                <p class="text"> <span wicket:id="tel">Telephone</span></p>
             </td>
             <td> </td>
         </tr>
@@ -249,13 +247,13 @@
         </tr>
         <tr>
             <td>
-                <input wicket:id="changeData" type="button" value="Change data" id="submit" />
+                <input wicket:id="changeData" type="submit" value="Change data" id="submit" />
             </td>
             <td>
-                <input wicket:id="delete" type="button" value="Delete" id="submit" />
+                <input wicket:id="delete" type="submit" value="Delete" id="submit" />
             </td>
             <td >
-                <input wicket:id="book" type="button" value="Book" id="submit" />
+                <input wicket:id="book" type="submit" value="Book" id="submit" />
             </td>
         </tr>
     </table>

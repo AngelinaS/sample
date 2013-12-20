@@ -18,7 +18,7 @@ public class Hotel {
     private String country;
     private String city;
     private String address;
-    private Long telephone;
+    private String telephone;
     private Integer stars;
     private Integer roomsQuantity;
     private String description;
@@ -73,11 +73,11 @@ public class Hotel {
         this.address = address;
     }
 
-    public Long getTelephone() {
+    public String getTelephone() {
         return telephone;
     }
 
-    public void setTelephone(Long telephone) {
+    public void setTelephone(String telephone) {
         this.telephone = telephone;
     }
 

@@ -3,9 +3,9 @@
     <title>Booking</title>
 </head>
 <style>
-   body, html
+    body, html
     {
-         margin: 0;
+        margin: 0;
         padding: 0;
     }
     h1
@@ -47,28 +47,28 @@
         color: #00008b;
     }
 
-   #submit
-   {
-       background-color: #15adff;
-       -moz-border-radius: 10px;
-       -webkit-border-radius: 10px;
-       border-radius:10px;
-       color: #f4f0ff;
-       font-family: 'sans-serif';
-       font-size: 20px;
-       text-decoration: none;
-       border-width: 3px;
-       border-style: solid;
-       border-color: white;
+    #submit
+    {
+        background-color: #15adff;
+        -moz-border-radius: 10px;
+        -webkit-border-radius: 10px;
+        border-radius:10px;
+        color: #f4f0ff;
+        font-family: 'sans-serif';
+        font-size: 20px;
+        text-decoration: none;
+        border-width: 3px;
+        border-style: solid;
+        border-color: white;
 
-   }
-   #submit:hover
-   {
-      background: #1943a8;
-       border-width: 3px;
-       border-style: solid;
-       border-color: white;
-   }
+    }
+    #submit:hover
+    {
+        background: #1943a8;
+        border-width: 3px;
+        border-style: solid;
+        border-color: white;
+    }
     #td
     {
         border-color: #1943a8;
@@ -96,42 +96,42 @@
         font-size: x-large;
 
     }
-   pre.hotel
-   {
-       font-family: sans-serif;
-       color: #4267d6;
-       font-size: large;
+    pre.hotel
+    {
+        font-family: sans-serif;
+        color: #4267d6;
+        font-size: large;
 
-   }
-   p.price
-   {
-       font-family: sans-serif;
-       color: #4267d6;
-       font-size: x-large;
-   }
-   .info
-   {
-       font-family: monospace;
-       color: #ff090f;
-   }
-   A.hotel:link
-   {
-       color: #1004ff;
-       text-decoration: none;
-       font-family: inherit;
-   }
-   A.hotel:active
-   {
-       color:#1004ff;
-   }
-   A.hotel:visited
-   {
-       color:#1004ff;
-   }
-   A.hotel:hover
-   {
-       text-decoration: none;
-   }
+    }
+    p.price
+    {
+        font-family: sans-serif;
+        color: #4267d6;
+        font-size: x-large;
+    }
+    .info
+    {
+        font-family: monospace;
+        color: #ff090f;
+    }
+    A.hotel:link
+    {
+        color: #1004ff;
+        text-decoration: none;
+        font-family: inherit;
+    }
+    A.hotel:active
+    {
+        color:#1004ff;
+    }
+    A.hotel:visited
+    {
+        color:#1004ff;
+    }
+    A.hotel:hover
+    {
+        text-decoration: none;
+    }
     A.hotel:link:hover
     {
         text-decoration: underline;
@@ -200,27 +200,27 @@
             <td > </td>
         </tr>
         <tr>
-           <td></td>
-           <td width="5%"></td>
-           <td width="10%" align="right">
+            <td></td>
+            <td width="5%"></td>
+            <td width="10%" align="right">
 
-           </td>
-           <td></td>
-           <td bgcolor="FFBC4C" colspan="3">
-           </td>
-           <td></td>
+            </td>
+            <td></td>
+            <td bgcolor="FFBC4C" colspan="3">
+            </td>
+            <td></td>
         </tr>
         <tr>
-           <td colspan="4">
+            <td colspan="4">
 
-           </td>
-           <td bgcolor="FFBC4C">
-           </td>
-           <td bgcolor="FFBC4C">
+            </td>
+            <td bgcolor="FFBC4C">
+            </td>
+            <td bgcolor="FFBC4C">
                <pre class="pre1">Rooms   <select wicket:id="rooms"/>      Adults   <select wicket:id="adults"/>      Children    <select wicket:id="children"/>
                </pre>
-           </td>
-           <td bgcolor="FFBC4C" colspan="3"> </td>
+            </td>
+            <td bgcolor="FFBC4C" colspan="3"> </td>
         </tr>
         <tr valign="top">
             <td  colspan="4"> </td>
@@ -238,13 +238,13 @@
     <p></p>
     <table>
         <tr>
-            <table  width="100%"  cellspacing="0" >
-                <tr>
+            <table  width="100%"  cellspacing="0">
+                <tr wicket:id="tableHotelRow">
                     <td width="19%">
                     </td>
 
                     <td width="37%" bgcolor="FEFFD7">
-                       <pre class="name">Name  <span wicket:id="hotelname">Name</span></pre>
+                        <pre class="name">Name  <span wicket:id="hotelname">Name</span></pre>
                         <pre class="hotel">Country  <span wicket:id="country" >Country</span></pre>
                         <pre class="hotel">City  <span wicket:id="city" >City</span> </pre>
                         <pre class="hotel">Stars  <span wicket:id="stars" >Stars</span> </pre>

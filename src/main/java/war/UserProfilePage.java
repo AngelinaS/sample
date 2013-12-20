@@ -46,7 +46,6 @@ public class UserProfilePage extends WebPage {
 
     public UserProfilePage(){
         Form form = new Form("form");
-
         login = ((MySession) Session.get()).getMyObject().toString();
         User loguser = userRepository.loadUserByLogin(login);
         pass = loguser.getPassword().toString();
@@ -77,9 +76,7 @@ public class UserProfilePage extends WebPage {
         passtext1.setVisible(false);
         passtext2.setVisible(false);
         passtext3.setVisible(false);
-        if (login.equals("admin")){
-            delete.setVisible(false);
-        }
+
         changedata = new Button("changeData"){
             @Override
             public void onSubmit (){
@@ -205,6 +202,11 @@ public class UserProfilePage extends WebPage {
 
             }
         };
+
+        if (login.equals("admin")){
+            delete.setVisible(false);
+        }
+
         deleteaccount = new Button("deleteaccount"){
             @Override
             public void onSubmit (){

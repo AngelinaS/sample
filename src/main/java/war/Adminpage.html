@@ -1,6 +1,6 @@
 <html xmlns="http://www.w3.org/1999/html">
 <head>
-    <title>Admin page</title>
+    <title>Booking</title>
 </head>
 <style>
     body, html
@@ -19,6 +19,7 @@
         font-family: sans-serif;
         color: #00008b;
     }
+
     p.p1
     {
         font-family: sans-serif;
@@ -72,14 +73,14 @@
     {
         border-color:#FFBC4C;
     }
-    p.name
+    pre.name
     {
         font-family: sans-serif;
         color: #4267d6;
         font-size: x-large;
 
     }
-    p.hotel
+    pre.hotel
     {
         font-family: sans-serif;
         color: #4267d6;
@@ -92,44 +93,69 @@
         color: #4267d6;
         font-size: x-large;
     }
-    p.user
+    .info
     {
-        color: #f4f0ff;
-        font-family: 'sans-serif';
+        font-family: monospace;
+        color: #ff090f;
     }
-    A:link
+    A.hotel:link
     {
-        color: #000484;
+        color: #1004ff;
         text-decoration: none;
-        font-size: x-large;
+        font-family: inherit;
     }
-    A:active
+    A.hotel:active
     {
-        color:#000484
+        color:#1004ff;
     }
-    A:visited
+    A.hotel:visited
     {
-        color:#000484
+        color:#1004ff;
     }
-    A:hover
+    A.hotel:hover
+    {
+        text-decoration: none;
+    }
+    A.hotel:link:hover
+    {
+        text-decoration: underline;
+    }
+    A.head:link
+    {
+        color: #c9ddff;
+        text-decoration: none;
+    }
+    A.head:active
+    {
+        color:#c9ddff
+    }
+    A.head:visited
+    {
+        color:#c9ddff
+    }
+    A.head:hover
     {
         text-decoration: none;
     }
 </style>
 <body>
 <form wicket:id="form">
-    <table frame="below" width="100%" height="70px" bgcolor=3D77FF bordercolor=0012FF >
+
+    <table frame="below" width="100%" height="70px" bgcolor=0E0E87 bordercolor=0012FF >
         <tr></tr>
         <tr valign="middle">
             <td width="1%" ></td>
-            <td ><h1>Booking</h1> </td>
+            <td><h1>Booking</h1> </td>
             <td align="right">
-                 <input type="button" value="Add hotel" id="submit">
+                <input type="submit" wicket:id="addhotel" value="Add hotel" id="submit"/>
             </td>
-            <td align="right" width=7%>
-                <a wicket:id="login" href="UserProfilePage.html" >Admin</a>
+            <td align="right" width="7%">
+                <a wicket:id="login" href="UserProfilePage.html"  class="head"><span wicket:id="userpage">User name</span></a>
             </td>
-            <td width="1%"></td>
+            <td width="7%" align="right">
+                <a wicket:id="logout" href="HomePage.html" class="head">Logout </a>
+            </td>
+            <td width="2%"></td>
         </tr>
     </table>
     <p></p>
@@ -137,8 +163,10 @@
         <tr>
             <td width="1%"></td>
             <td width="6%">
+
             </td>
             <td  width="9%">
+
             </td>
             <td width="2%"></td>
             <td width="1%" bgcolor="FFBC4C" rowspan="3"></td>
@@ -156,8 +184,12 @@
         </tr>
         <tr>
             <td></td>
-            <td></td>
-            <td></td>
+            <td>
+
+            </td>
+            <td>
+
+            </td>
             <td></td>
             <td bgcolor="FFBC4C">
                 <input wicket:id="search" type="text" placeholder="e.g. city, country, hotel name" size="50px"/>
@@ -174,6 +206,7 @@
             <td></td>
             <td width="5%"></td>
             <td width="10%" align="right">
+
             </td>
             <td></td>
             <td bgcolor="FFBC4C" colspan="3">
@@ -181,7 +214,9 @@
             <td></td>
         </tr>
         <tr>
-            <td colspan="4"> </td>
+            <td colspan="4">
+
+            </td>
             <td bgcolor="FFBC4C">
             </td>
             <td bgcolor="FFBC4C">
@@ -197,36 +232,39 @@
                 <pre>  </pre>
             </td>
             <td bgcolor="FFBC4C" align="right">
-                <input wicket:id="btnSearch"  type="submit"  value="Search" id="submit" />
+                <input wicket:id="btnSearch"  type="button"  value="Search" id="submit" />
             </td>
             <td bgcolor="FFBC4C">
             </td>
         </tr>
     </table>
     <p></p>
-    <table  width="100%"  cellspacing="0" >
-        <tr >
-            <td width="19%">
-            </td>
-            <td width="15%" bgcolor="FEFFD7">
-                <input type="image" border="2px" class="border" />
-            </td>
-            <td width="27%" bgcolor="FEFFD7">
-                <p class="name"> <span wicket:id="name">Name</span></p>
-                <p class="hotel"> <span wicket:id="country">Country</span></p>
-                <p class="hotel"><span wicket:id="city">City</span></p>
-                <p class="hotel"><span wicket:id="stars">Stars</span></p>
-            </td>
-            <td width="20%" bgcolor="FEFFD7">
-                <p class="hotel">From </p>
-                <p class="price"><span wicket:id="price">Price</span></p>
-                <p></p>
-                <input wicket:id="more" type="button" id="submit" value="More" />
-            </td>
-            <td width="19%">
-            </td>
+    <table>
+        <tr>
+            <table  width="100%"  cellspacing="0">
+                <tr wicket:id="tableHotelRow">
+                    <td width="19%">
+                    </td>
+
+                    <td width="37%" bgcolor="FEFFD7">
+                        <pre class="name">Name  <span wicket:id="hotelname">Name</span></pre>
+                        <pre class="hotel">Country  <span wicket:id="country" >Country</span></pre>
+                        <pre class="hotel">City  <span wicket:id="city" >City</span> </pre>
+                        <pre class="hotel">Stars  <span wicket:id="stars" >Stars</span> </pre>
+                    </td>
+                    <td width="25" bgcolor="FEFFD7">
+                        <pre class="hotel">Prices from </pre>
+                        <!--<p class="price"><span wicket:id="price">Price</span></p>-->
+                        <p></p>
+                        <a wicket:id="more" href="HotelPage.html" class="hotel" > More... </a>
+                    </td>
+                    <td width="19%">
+                    </td>
+                </tr>
+            </table>
         </tr>
     </table>
+
 </form>
 </body>
 </html>
