@@ -84,6 +84,11 @@
             color: #6362ff;
             font-style: normal;
         }
+        .error
+        {
+            font-family: monospace;
+            color: #ff090f;
+        }
     </style>
 </head>
 <body>
@@ -92,7 +97,7 @@
         <tr></tr>
         <tr valign="middle">
             <td  width="1%"></td>
-            <td ><a href="AdminPage.html"><h1>Booking</h1></a></td>
+            <td ><a href="HomePage.html" wicket:id="home"><h1>Booking</h1></a></td>
             <td align="right" width=7%>
                 <a wicket:id="login" href="UserProfilePage.html" id="a1" >Admin</a>
             </td>
@@ -105,7 +110,9 @@
             <td width="200px" >
                 <h2>Add hotel</h2>
             </td>
-            <td width="700px"> </td>
+            <td width="700px">
+                <span wicket:id="hotelcreate" class="error">Good</span>
+            </td>
             <td width="30px"> </td>
         </tr>
         <tr>
@@ -169,7 +176,9 @@
             <td>
                 <input wicket:id="roomsQuantity" type="text"  size="50px" required/>
             </td>
-            <td> </td>
+            <td>
+                <span wicket:id="soomsqerror" class="error">Error</span>
+            </td>
         </tr>
         <tr>
             <td align="right">
@@ -251,6 +260,13 @@
             </td>
             <td > </td>
         </tr>
+        <tr>
+            <td></td>
+            <td align="center">
+                <span wicket:id="addroom" class="error">Error</span>
+            </td>
+            <td > </td>
+        </tr>
         <tr >
             <td align="right">
                 <p class="p1">Hotel rooms</p>
@@ -310,7 +326,8 @@
                             <p class="text"></p>
                         </td>
                         <td >
-                            <input wicket:id="more" type="submit"  id="submit" value="More types"/>
+                            <input wicket:id="more" type="submit"  id="submit" value="Create"/>
+
                         </td>
                     </tr>
                 </table>

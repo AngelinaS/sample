@@ -11,10 +11,12 @@ public class RoomsRepository {
         return entityManager.find(Rooms.class, id);
     }
 
-    public Rooms addRooms (String roomtype, Integer quantrooms, Double price, Integer roomsinroom,
+    public Rooms addRooms (  Hotel hotel, String roomtype, Integer quantrooms, Double price, Integer roomsinroom,
                            Integer foroneperdbed, Integer fortwoperbed) {
         entityManager.getTransaction().begin();
         Rooms rooms = new Rooms();
+        rooms.getHotel();
+        rooms.setHotel(hotel);
         rooms.setRoomsType(roomtype);
         rooms.setRoomsQuantity(quantrooms);
         rooms.setPrice(price);

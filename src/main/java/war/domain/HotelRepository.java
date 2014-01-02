@@ -10,10 +10,16 @@ public class HotelRepository {
 
     private EntityManager entityManager = WicketApplication.emf.createEntityManager();
 
-    public List<Hotel> loadByName(String name){
-        return entityManager.createQuery("select h from Hotel h where h.name = :name", Hotel.class)
-                .setParameter("name", name)
-                .getResultList();
+    public Hotel loadbyname(String name) {
+        Hotel result = null;
+        try{
+            result = entityManager.createQuery("select h from Hotel h where h.name = :name", Hotel.class)
+            .setParameter("name", name)
+                    .getSingleResult();
+        }catch (NoResultException nre){
+            throw nre;
+        }
+        return result;
     }
 
     public List<Hotel> loadHotels() {
@@ -76,7 +82,4 @@ public class HotelRepository {
         return  null;
     }
 
-//    return entityManager.createQuery("select h from Hotel h where h.bookings.date = :date", Hotel.class)
-//            .setParameter("date", date)
-//    .getResultList();
 }

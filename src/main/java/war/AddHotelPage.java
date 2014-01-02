@@ -4,6 +4,7 @@ package war;
 import com.google.inject.Inject;
 
 import org.apache.wicket.markup.html.WebPage;
+import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.*;
 import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.model.IModel;
@@ -11,6 +12,8 @@ import org.apache.wicket.model.Model;
 import org.apache.wicket.model.PropertyModel;
 import war.domain.Hotel;
 import war.domain.HotelRepository;
+import war.domain.Rooms;
+import war.domain.RoomsRepository;
 
 import java.util.Arrays;
 import java.util.List;
@@ -19,6 +22,7 @@ import java.util.List;
 public class AddHotelPage extends WebPage {
     @Inject
     HotelRepository hotelRepository;
+    RoomsRepository roomsRepository;
 
     public TextField name;
     public TextField country;
@@ -42,6 +46,12 @@ public class AddHotelPage extends WebPage {
     private Integer one=1;
     private Radio parking1;
     private Radio parking2;
+    private Label errorrooms;
+    private Label createhotel;
+    private Integer hotelid;
+    private Label addroom;
+    public String namev;
+
 
     private static final List<Integer> star = Arrays.asList(
             1, 2, 3, 4, 5);
@@ -55,6 +65,12 @@ public class AddHotelPage extends WebPage {
         telephone = new TextField("tel", new Model(""));
         stars = new DropDownChoice("stars", new PropertyModel<Integer>(this, "one"), star);
         roomsq = new TextField("roomsQuantity", new Model(""));
+        errorrooms = new Label("soomsqerror","Only numbers");
+        errorrooms.setVisible(false);
+        createhotel = new Label("hotelcreate","Hotel is created");
+        createhotel.setVisible(false);
+        addroom = new Label("addroom","Please enter correct data");
+        addroom.setVisible(false);
 
         IModel<String> selected = new Model<String>();
         final RadioGroup group = new RadioGroup("group", selected);
@@ -82,17 +98,69 @@ public class AddHotelPage extends WebPage {
         activities = new TextArea("activities", new Model(""));
 
         roomtype = new TextField("roomType", new Model(""));
+        roomtype.setEnabled(false);
         roomquant = new TextField("roomsQuant", new Model(""));
+        roomquant.setEnabled(false);
         price = new TextField("price", new Model(""));
+        price.setEnabled(false);
         rooms = new TextField("rooms", new Model(""));
+        rooms.setEnabled(false);
         oneperbed = new TextField("onePerBedQuant", new Model(""));
+        oneperbed.setEnabled(false);
         twoperbed = new TextField("twoPerBedQuant", new Model(""));
+        twoperbed.setEnabled(false);
 
-        more = new Button("more");
+        more = new Button("more"){
+            @Override
+            public void onSubmit(){
+                createhotel.setVisible(false);
+                String roomtupev = (String) roomtype.getModelObject();
+                String roomquantv =  roomquant.getModelObject().toString();
+                Boolean st = roomquantv.matches("^[0-9]+$");
+                if(!st){
+                    addroom.setVisible(true);
+                    return;
+                }
+                Integer str = Integer.parseInt(roomquantv);
+                addroom.setVisible(false);
+                String pricev =  price.getModelObject().toString();
+                Double pr = Double.parseDouble(pricev);
+                String roomsv =  rooms.getModelObject().toString();
+                Boolean rm = roomsv.matches("^[0-9]+$");
+                if(!rm){
+                    addroom.setVisible(true);
+                    return;
+                }
+                Integer rom = Integer.parseInt(roomsv);
+                addroom.setVisible(false);
+                String oneperbedv = oneperbed.getModelObject().toString();
+                Boolean onep = oneperbedv.matches("^[0-9]+$");
+                if(!onep){
+                    addroom.setVisible(true);
+                    return;
+                }
+                Integer oneper = Integer.parseInt(oneperbedv);
+                addroom.setVisible(false);
+                String twoperv = twoperbed.getModelObject().toString();
+                Boolean twop = twoperv.matches("^[0-9]+$");
+                if(!twop){
+                    addroom.setVisible(true);
+                    return;
+                }
+                Integer twobed = Integer.parseInt(twoperv);
+                addroom.setVisible(false);
+                Hotel hoteli = hotelRepository.loadbyname(namev);
+                //System.out.print(">>>"+hoteli.getName().toString());
+                //System.out.print(">>>"+roomtupev+"::"+String.valueOf(str) +"::"+String.valueOf(pr)+"::"+String.valueOf(rom)+"::"+String.valueOf(oneper)+"::"+String.valueOf(twobed));
+                Rooms rooms = roomsRepository.addRooms(hoteli, roomtupev, str, pr, rom, oneper, twobed);
+
+            }
+        };
+        more.setEnabled(false);
         create = new Button("create"){
             @Override
             public void onSubmit(){
-                String namev = (String) name.getModelObject();
+                namev = (String) name.getModelObject();
                 String countryv = (String) country.getModelObject();
                 String cityv = (String) city.getModelObject();
                 String addressv = (String) address.getModelObject();
@@ -103,16 +171,13 @@ public class AddHotelPage extends WebPage {
                 Boolean ro = roomsqv.matches("^[0-9]+$");
 
                 if(!ro){
-                    System.out.print(">>>return>>>");
-                   return;
+                    errorrooms.setVisible(true);
+                    return;
                 }
                 Integer rom = Integer.parseInt(roomsqv);
-
+                errorrooms.setVisible(false);
                 String  parkingv =  group.getModelObject().toString();
-                Boolean pr = false;
-                if(parkingv.equals("1")){
-                    pr = true;
-                }
+                Boolean pr = parkingv.equals("1");
                 String wifiv =  group2.getModelObject().toString();
                 Boolean wi = false;
                 if(wifiv.equals("1")){
@@ -144,12 +209,43 @@ public class AddHotelPage extends WebPage {
 
                 Hotel hotel  = hotelRepository.addHotel(namev, countryv, cityv, addressv, telephonev, str, rom, pr,
                         wi, pe, descriptionv, servicesv, foodanddrinkv, activitiesv);
+                Hotel hoteli = hotelRepository.loadbyname(namev);
+                hotelid = hoteli.getHotelId();
+                createhotel.setVisible(true);
+                name.setEnabled(false);
+                country.setEnabled(false);
+                city.setEnabled(false);
+                address.setEnabled(false);
+                telephone.setEnabled(false);
+                stars.setEnabled(false);
+                roomsq.setEnabled(false);
+                group.setEnabled(false);
+                group2.setEnabled(false);
+                group3.setEnabled(false);
+                description.setEnabled(false);
+                services.setEnabled(false);
+                fodanddrink.setEnabled(false);
+                activities.setEnabled(false);
+                create.setEnabled(false);
+                roomtype.setEnabled(true);
+                roomquant.setEnabled(true);
+                price.setEnabled(true);
+                rooms.setEnabled(true);
+                oneperbed.setEnabled(true);
+                twoperbed.setEnabled(true);
+                more.setEnabled(true);
             }
         };
 
         form.add(new Link("login") {
             public void onClick() {
                 setResponsePage(new UserProfilePage());
+
+            }
+        });
+        form.add(new Link("home") {
+            public void onClick() {
+                setResponsePage(new AdminPage());
             }
         });
         form.add(name);
@@ -171,6 +267,9 @@ public class AddHotelPage extends WebPage {
         form.add(twoperbed);
         form.add(create);
         form.add(more);
+        form.add(errorrooms);
+        form.add(createhotel);
+        form.add(addroom);
         add(form);
     }
 }
