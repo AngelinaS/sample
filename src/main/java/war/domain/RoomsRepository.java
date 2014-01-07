@@ -15,7 +15,7 @@ public class RoomsRepository {
                            Integer foroneperdbed, Integer fortwoperbed) {
         entityManager.getTransaction().begin();
         Rooms rooms = new Rooms();
-        rooms.getHotel();
+//        rooms.getHotel();
         rooms.setHotel(hotel);
         rooms.setRoomsType(roomtype);
         rooms.setRoomsQuantity(quantrooms);
@@ -23,6 +23,7 @@ public class RoomsRepository {
         rooms.setRooms(roomsinroom);
         rooms.setOnePerBedQuant(foroneperdbed);
         rooms.setTwoPerBedQuant(fortwoperbed);
+
         entityManager.persist(rooms);
         entityManager.getTransaction().commit();
         return rooms;

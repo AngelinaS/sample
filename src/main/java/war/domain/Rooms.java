@@ -24,9 +24,10 @@ public class Rooms {
     @OneToMany(mappedBy = "rooms")
     private List<Booking> bookings;
 
-    @ManyToOne(cascade=CascadeType.PERSIST)
-    @JoinColumn(name = "HOTELID")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "HOTELID", nullable = false, updatable = false, insertable = true)
     private Hotel hotel;
+
 
     public int getRoomsID() {
         return roomsID;
@@ -107,4 +108,5 @@ public class Rooms {
     public void setHotel(Hotel hotel) {
         this.hotel = hotel;
     }
+
 }

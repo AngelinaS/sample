@@ -150,8 +150,7 @@ public class AddHotelPage extends WebPage {
                 Integer twobed = Integer.parseInt(twoperv);
                 addroom.setVisible(false);
                 Hotel hoteli = hotelRepository.loadbyname(namev);
-                //System.out.print(">>>"+hoteli.getName().toString());
-                //System.out.print(">>>"+roomtupev+"::"+String.valueOf(str) +"::"+String.valueOf(pr)+"::"+String.valueOf(rom)+"::"+String.valueOf(oneper)+"::"+String.valueOf(twobed));
+
                 Rooms rooms = roomsRepository.addRooms(hoteli, roomtupev, str, pr, rom, oneper, twobed);
 
             }
@@ -248,6 +247,7 @@ public class AddHotelPage extends WebPage {
                 setResponsePage(new AdminPage());
             }
         });
+        form.add(errorrooms);
         form.add(name);
         form.add(country);
         form.add(city);
@@ -267,7 +267,7 @@ public class AddHotelPage extends WebPage {
         form.add(twoperbed);
         form.add(create);
         form.add(more);
-        form.add(errorrooms);
+
         form.add(createhotel);
         form.add(addroom);
         add(form);

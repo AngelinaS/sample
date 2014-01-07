@@ -13,7 +13,7 @@ public class Hotel {
     @Id
     @GeneratedValue(generator="increment")
     @GenericGenerator(name="increment", strategy = "increment")
-    private int hotelId;
+    public int hotelId;
     private String name;
     private String country;
     private String city;
@@ -28,8 +28,7 @@ public class Hotel {
     private Boolean wifi;
     private String foodAndDrink;
     private String activities;
-
-    @OneToMany(mappedBy = "rooms")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "rooms")
     private List<Rooms> rooms;
 
 
