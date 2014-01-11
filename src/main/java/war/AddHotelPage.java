@@ -22,7 +22,7 @@ import java.util.List;
 public class AddHotelPage extends WebPage {
     @Inject
     HotelRepository hotelRepository;
-    RoomsRepository roomsRepository;
+    @Inject RoomsRepository roomsRepository;
 
     public TextField name;
     public TextField country;
@@ -51,6 +51,7 @@ public class AddHotelPage extends WebPage {
     private Integer hotelid;
     private Label addroom;
     public String namev;
+    public Label roomscreate;
 
 
     private static final List<Integer> star = Arrays.asList(
@@ -71,7 +72,8 @@ public class AddHotelPage extends WebPage {
         createhotel.setVisible(false);
         addroom = new Label("addroom","Please enter correct data");
         addroom.setVisible(false);
-
+        roomscreate = new Label("roomscreate","Rooms is created");
+        roomscreate.setVisible(false);
         IModel<String> selected = new Model<String>();
         final RadioGroup group = new RadioGroup("group", selected);
         form.add(group);
@@ -113,6 +115,7 @@ public class AddHotelPage extends WebPage {
         more = new Button("more"){
             @Override
             public void onSubmit(){
+                roomscreate.setVisible(false);
                 createhotel.setVisible(false);
                 String roomtupev = (String) roomtype.getModelObject();
                 String roomquantv =  roomquant.getModelObject().toString();
@@ -151,11 +154,19 @@ public class AddHotelPage extends WebPage {
                 addroom.setVisible(false);
                 Hotel hoteli = hotelRepository.loadbyname(namev);
 
-                Rooms rooms = roomsRepository.addRooms(hoteli, roomtupev, str, pr, rom, oneper, twobed);
+                Rooms room = roomsRepository.addRooms(hoteli, roomtupev, str, pr, rom, oneper, twobed);
+                roomscreate.setVisible(true);
+                roomtype.setModelObject("");
+                roomquant.setModelObject("");
+                price.setModelObject("");
+                rooms.setModelObject("");
+                oneperbed.setModelObject("");
+                twoperbed.setModelObject("");
 
             }
         };
         more.setEnabled(false);
+
         create = new Button("create"){
             @Override
             public void onSubmit(){
@@ -267,7 +278,7 @@ public class AddHotelPage extends WebPage {
         form.add(twoperbed);
         form.add(create);
         form.add(more);
-
+        form.add(roomscreate);
         form.add(createhotel);
         form.add(addroom);
         add(form);

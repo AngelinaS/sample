@@ -10,14 +10,23 @@ import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.PasswordTextField;
 import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.markup.html.link.Link;
+import org.apache.wicket.markup.html.list.ListItem;
+import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.model.Model;
-import war.domain.User;
-import war.domain.UserRepository;
+import war.domain.*;
+
+import java.util.List;
 
 public class UserProfilePage extends WebPage {
 
     @Inject
     UserRepository userRepository;
+    @Inject
+    BookingRepository bookingRepository;
+    @Inject
+    HotelRepository hotelRepository;
+    @Inject
+    RoomsRepository roomsRepository;
     private Button changedata;
     private Button changepass;
     private Button delete;
@@ -268,6 +277,25 @@ public class UserProfilePage extends WebPage {
                 setResponsePage(new HomePage());
             }
         });
+
+
+//        final List<Booking> booking = bookingRepository.loadByUserId(loguser);
+//        form.add(new ListView<Booking>("listbooking", booking) {
+//            @Override
+//            protected void populateItem(final ListItem<Booking> item) {
+//                final Booking bookings = item.getModelObject();
+//                item.add(new Label("bookingdate", new Model<String>(bookings.getBookingDate().toString())));
+//                final Rooms roomsname = roomsRepository.loadById(bookings.getRooms().roomsID);
+//                System.out.print(">>>>rom name>> "+roomsname.getRoomsType()+" roomsid>>>> "+roomsname.getRoomsID());
+//                final Hotel hotelname = hotelRepository.hotelbyId(roomsname.getHotel().hotelId);
+//                item.add(new Label("hotelname", new Model<String>(hotelname.getName())));
+//                item.add(new Label("roomtype", new Model<String>(roomsname.getRoomsType())));
+//                item.add(new Label("checkin", new Model<String>(bookings.getCheckIn().toString())));
+//                item.add(new Label("checkout", new Model<String>(bookings.getCheckOut().toString())));
+//                item.add(new Label("roomsq", new Model<String>(bookings.getRoomsq().toString())));
+//                item.add(new Label("price", new Model<Double>(roomsname.getPrice())));
+//            }
+//        });
 
         form.add(userlogin);
         form.add(name);

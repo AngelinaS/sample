@@ -16,6 +16,8 @@ import org.apache.wicket.model.PropertyModel;
 import org.apache.wicket.util.time.TimeFrame;
 import war.domain.Hotel;
 import war.domain.HotelRepository;
+
+import javax.swing.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
@@ -57,7 +59,12 @@ public class HomePage extends WebPage {
         selectadults = new DropDownChoice("adults", new PropertyModel<Integer>(this, "one"),listFive);
         selectchildren = new DropDownChoice("children",new PropertyModel<Integer>(this,"zero"),listZero );
         search = new TextField("search", new Model(""));
-        btnSearch = new Button("btnSearch");
+        btnSearch = new Button("btnSearch"){
+            @Override
+            public void onSubmit(){
+
+            }
+        };
 
         tfDateIn = new DateTextField("dateIn", new PropertyModel<Date>(
                 this, "dateIn"), new StyleDateConverter("S-", true));

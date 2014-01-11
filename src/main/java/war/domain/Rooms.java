@@ -21,7 +21,7 @@ public class Rooms {
     public Integer onePerBedQuant;
     public Integer twoPerBedQuant;
 
-    @OneToMany(mappedBy = "rooms")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "rooms")
     private List<Booking> bookings;
 
     @ManyToOne(fetch = FetchType.LAZY)

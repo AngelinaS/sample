@@ -7,13 +7,21 @@ import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.Button;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.link.Link;
+import org.apache.wicket.markup.html.list.ListItem;
+import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.model.Model;
 import war.domain.Hotel;
 import war.domain.HotelRepository;
+import war.domain.Rooms;
+import war.domain.RoomsRepository;
+
+import java.util.List;
 
 public class HotelPage extends WebPage {
     @Inject
     HotelRepository hotelRepository;
+    @Inject
+    RoomsRepository roomsRepository;
 
     private Label userlogin;
     private Object sessijaname;
@@ -29,8 +37,6 @@ public class HotelPage extends WebPage {
     private Label description;
     private Label services;
     private Label parking;
-    private Label roomtypes;
-    private Label price;
     private Label telephone;
     private Label wifi;
     private Button book;
@@ -72,23 +78,40 @@ public class HotelPage extends WebPage {
         description = new Label("description", new Model<String>(hotel.getDescription()));
         services = new Label("services", new Model<String>(hotel.getServices()));
         parking = new Label("parking", new Model<Boolean>(hotel.getParking()));
-        roomtypes = new Label("roomTypes", new Model(""));
-        price = new Label("price", new Model(""));
+
+         final List<Rooms> roomes = roomsRepository.loadRooms(hotel);
+        form.add(new ListView<Rooms>("roomslist", roomes) {
+            @Override
+            protected void populateItem(final ListItem<Rooms> item) {
+                final Rooms room = item.getModelObject();
+                item.add(new Label("roomTypes", new Model<String>(room.getRoomsType())));
+                item.add(new Label("price", new Model<Double>(room.getPrice())));
+                item.add(new Label("oneprebed", new Model<Integer>(room.getOnePerBedQuant())));
+                item.add(new Label("twoprebed", new Model<Integer>(room.getTwoPerBedQuant())));
+                item.add(new Label("room", new Model<Integer>(room.getRooms())));
+            }
+        });
+
         telephone = new Label("tel", new Model<String>(hotel.getTelephone()));
         wifi = new Label("wifi", new Model<Boolean>(hotel.getWifi()));
         book = new Button("book"){
             @Override
             public void onSubmit() {
-                setResponsePage(new BookingPage());
+                setResponsePage(new BookingPage(hotel.getHotelId()));
             }
         };
 
         delete = new Button("delete"){
             @Override
             public void onSubmit() {
+                Integer hotelid;
+                hotelid = hotel.getHotelId();
                 Hotel hoteldel = hotelRepository.deleteHotel(hotel.getHotelId());
+                List<Rooms> listRooms = roomsRepository.loadRooms(hotel);
+                for (Integer i=0 ; i < listRooms.size(); i++){
+                    roomsRepository.deleteRooms(listRooms.get(i).roomsID);
+                }
                 setResponsePage(new AdminPage());
-
             }
         };
         changedata = new Button("changeData"){
@@ -134,11 +157,21 @@ public class HotelPage extends WebPage {
             };
         }
         else{
+            if((sessijaname.toString().equals("null")))
+            {
+                homelink = new Link("home") {
+                    public void onClick() {
+                        setResponsePage(new HomePage());
+                    }
+                };
+            }
+            else{
             homelink = new Link("home") {
                 public void onClick() {
                     setResponsePage(new UserPage());
                 }
             };
+            }
         }
         userLink.add(userlogin);
         form.add(userLink);
@@ -155,8 +188,6 @@ public class HotelPage extends WebPage {
         form.add(description);
         form.add(services);
         form.add(parking);
-        form.add(roomtypes);
-        form.add(price);
         form.add(telephone);
         form.add(wifi);
         form.add(book);

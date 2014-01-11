@@ -16,11 +16,12 @@ public class Booking {
     private Date checkIn;
     private Date checkOut;
     private Date bookingDate;
-    @ManyToOne
-    @JoinColumn(name = "USERID")
+    private Integer roomsq;
+    @ManyToOne (fetch = FetchType.LAZY)
+    @JoinColumn(name = "USERID", nullable = false, updatable = false, insertable = true)
     private User user;
 
-    @ManyToOne
+    @ManyToOne (fetch = FetchType.LAZY)
     @JoinColumn(name = "ROOMSID")
     private Rooms rooms;
 
@@ -73,5 +74,11 @@ public class Booking {
         this.rooms = rooms;
     }
 
+    public Integer getRoomsq() {
+        return roomsq;
+    }
 
+    public void setRoomsq(Integer roomsq) {
+        this.roomsq = roomsq;
+    }
 }

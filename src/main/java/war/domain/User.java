@@ -21,7 +21,7 @@ import java.util.List;
     private String password;
     private String email;
     private String login;
-    @OneToMany(mappedBy = "user")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
     private List<Booking> bookings;
 
 
